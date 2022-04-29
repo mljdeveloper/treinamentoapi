@@ -98,7 +98,7 @@ DATABASES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3030',
+    'http://localhost:8080',
 ]
 
 
