@@ -21,7 +21,8 @@ class AuthUserAPIView(GenericAPIView):
 
 
 class RegisterAPIView(GenericAPIView):
-    authenticantion_classes = []
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
 
     serializer_class = RegisterSerializer
 
@@ -37,7 +38,8 @@ class RegisterAPIView(GenericAPIView):
 
 
 class LoginAPIView(GenericAPIView):
-    authenticantion_classes = []
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
 
     serializer_class = LoginSerializer
 
@@ -49,6 +51,7 @@ class LoginAPIView(GenericAPIView):
 
         if user:
             serializers = self.serializer_class(user)
+            print(serializers.data)
 
             return response.Response(serializers.data, status=status.HTTP_200_OK)
 
