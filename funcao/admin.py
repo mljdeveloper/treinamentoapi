@@ -6,7 +6,7 @@ from .models import Funcao
 
 class FuncaoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nomefuncao', 'create_at', 'updated_at', 'mostrar')
-    list_display_links = ('id', 'nomecargo')
+    list_display_links = ('id', 'nomefuncao')
     list_per_page = 200
     search_fields = ('id', 'nomefuncao',)
     list_editable = ('mostrar',)

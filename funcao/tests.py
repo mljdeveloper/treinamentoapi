@@ -9,10 +9,10 @@ class TestListCreateFuncao(APITestCase):
 
     def authenticate(self):
 
-        #        self.client.post(reverse('register'), {"email": "eusou100555@hotmail.com",
-        # "username": "eusou100555",
-        #                                               "password": "30304040",
-        #                                               "parent_id": 1})
+        self.client.post(reverse('register'), {"email": "marcos.luiz.jesus@hotmail.com",
+                                               "username": "marcos",
+                                               "password": "10102020",
+                                               "parent_id": 1})
 
         response = self.client.post(
             reverse('login'), {'email': "marcos.luiz.jesus@hotmail.com", 'password': "10102020"})

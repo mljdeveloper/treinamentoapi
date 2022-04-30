@@ -51,7 +51,6 @@ class LoginAPIView(GenericAPIView):
 
         if user:
             serializers = self.serializer_class(user)
-            print(serializers.data)
 
             return response.Response(serializers.data, status=status.HTTP_200_OK)
 
