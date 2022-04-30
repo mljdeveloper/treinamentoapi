@@ -22,7 +22,7 @@ class FuncaoAPIView(ListCreateAPIView):
     ordering_fields = ['id', 'nomefuncao']
 
     def perform_create(self, serializer):
-        return serializer.save(username=self.request.user, superusuario=self.request.user.parent_id)
+        return serializer.save(username=self.request.user)
 
     def get_queryset(self):
         return Funcao.objects.filter(username=self.request.user)

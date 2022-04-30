@@ -5,12 +5,13 @@ from .models import Funcao
 
 
 class FuncaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nomefuncao', 'create_at', 'updated_at', 'mostrar')
+    list_display = ('id', 'nomefuncao', 'create_at',
+                    'updated_at', 'mostrar', 'parent_id')
     list_display_links = ('id', 'nomefuncao')
     list_per_page = 200
     search_fields = ('id', 'nomefuncao',)
     list_editable = ('mostrar',)
-    exclude = ['username', 'superusuario', ]
+    exclude = ['username', ]
 
     def get_queryset(self, request):
         qs = super(FuncaoAdmin, self).get_queryset(request)
@@ -18,7 +19,6 @@ class FuncaoAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.username = request.user
-        obj.superusuario = request.user
         super().save_model(request, obj, form, change)
 
 

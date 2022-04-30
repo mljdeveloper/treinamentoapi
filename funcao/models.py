@@ -12,9 +12,6 @@ class Funcao(TrackingModel):
     mostrar = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
                                  related_name='username_funcao_set', null=True, blank=True)
-    # superusuario = models.ForeignKey(
-    #    to=User, on_delete=models.DO_NOTHING, related_name='superusuario_funcao_set', null=True, blank=True)
-    superusuario = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.nomefuncao
