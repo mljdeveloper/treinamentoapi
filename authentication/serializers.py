@@ -25,6 +25,10 @@ class LoginSerializer(serializers.ModelSerializer):
         max_length=120, min_length=6, write_only=True)
 
     class Meta:
+        extra_kwargs = {
+            'username': {'read_only': True},
+            'email': {'write_only': True}
+        }
         model = User
         fields = ('id', 'email', 'username', 'password',
                   'token', 'is_staff', 'parent_id')
