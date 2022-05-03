@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'authentication',
     'funcao',
+    'Category',
 ]
 
 MIDDLEWARE = [
@@ -84,18 +85,19 @@ WSGI_APPLICATION = 'treinamentoapi.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#    'default': {
-# 'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
-
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
 
 DATABASES = {
     'default': dj_database_url.config()
 }
+
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
@@ -113,8 +115,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'authentication.jwt.JWTAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
     'DEFAULT_PAGINATION_CLASS': "rest_framework.pagination.PageNumberPagination",
-    'PAGE_SIZE': 12
+    'PAGE_SIZE': 12,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {'anon': '50/day',
+                               'user': '500/minute'
+                               }
 }
 
 # Password validation
