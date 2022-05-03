@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'authentication',
     'funcao',
     'Category',
+    'Zipcode',
+    'Instructor',
 ]
 
 MIDDLEWARE = [
