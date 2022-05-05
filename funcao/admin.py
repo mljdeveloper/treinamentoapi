@@ -5,11 +5,11 @@ from .models import Funcao
 
 
 class FuncaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nomefuncao', 'create_at',
+    list_display = ('id', 'name', 'create_at',
                     'updated_at', 'mostrar', 'username')
-    list_display_links = ('id', 'nomefuncao')
+    list_display_links = ('id', 'name')
     list_per_page = 200
-    search_fields = ('id', 'nomefuncao',)
+    search_fields = ('id', 'name',)
     list_editable = ('mostrar',)
     exclude = ['username', ]
 

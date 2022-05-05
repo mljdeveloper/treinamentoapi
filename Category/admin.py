@@ -5,11 +5,11 @@ from .models import Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'categoryname', 'create_at',
+    list_display = ('id', 'name', 'create_at',
                     'updated_at', 'display', 'username')
-    list_display_links = ('id', 'categoryname')
+    list_display_links = ('id', 'name')
     list_per_page = 200
-    search_fields = ('id', 'categoryname',)
+    search_fields = ('id', 'name',)
     list_editable = ('display',)
     exclude = ['username', ]
 

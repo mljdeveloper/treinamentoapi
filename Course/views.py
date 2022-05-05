@@ -17,9 +17,9 @@ class CourseAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'coursename']
-    search_fields = ['id', 'coursename']
-    ordering_fields = ['id', 'coursename']
+    filterset_fields = ['id', 'name']
+    search_fields = ['id', 'name']
+    ordering_fields = ['id', 'name']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)

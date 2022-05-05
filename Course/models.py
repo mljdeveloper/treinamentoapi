@@ -6,12 +6,17 @@ from helpers.models import TrackingModel
 
 
 class Course(TrackingModel):
-    coursename = models.CharField(max_length=100, unique=True, blank=False)
+    name = models.CharField(max_length=100, unique=True, blank=False)
     period = models.CharField(max_length=10, null=True, blank=True)
     instructor = models.ManyToManyField(Instructor)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
                                  related_name='username_course_set', null=True, blank=True)
 
+    @property
+    def tabela(self):
+        valor = "Course"
+        return valor
+
     def __str__(self):
-        return self.coursename
+        return self.name

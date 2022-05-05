@@ -22,6 +22,11 @@ class Instructor(TrackingModel):
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
                                  related_name='username_instructor_set', null=True, blank=True)
 
+    @property
+    def tabela(self):
+        valor = "Instructor"
+        return valor
+
     def __str__(self):
         return self.name
 

@@ -7,10 +7,15 @@ from django.utils import timezone
 
 
 class Funcao(TrackingModel):
-    nomefuncao = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     mostrar = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
                                  related_name='username_funcao_set', null=True, blank=True)
 
+    @property
+    def tabela(self):
+        valor = "Cargo"
+        return valor
+
     def __str__(self):
-        return self.nomefuncao
+        return self.name

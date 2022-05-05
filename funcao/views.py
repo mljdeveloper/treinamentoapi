@@ -17,9 +17,9 @@ class FuncaoAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'nomefuncao']
-    search_fields = ['id', 'nomefuncao']
-    ordering_fields = ['id', 'nomefuncao']
+    filterset_fields = ['id', 'name']
+    search_fields = ['id', 'name']
+    ordering_fields = ['id', 'name']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)

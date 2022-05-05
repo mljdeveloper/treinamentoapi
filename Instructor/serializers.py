@@ -9,4 +9,6 @@ class InstructorSerializer(ModelSerializer):
     class Meta:
         model = Instructor
         fields = ('id', 'name', 'zipcode', 'number',
-                  'codearea', 'phonenumber', 'email',)
+                  'codearea', 'phonenumber', 'email', 'tabela')
+
+    read_only_fields = ['tabela']

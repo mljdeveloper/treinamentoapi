@@ -8,4 +8,6 @@ class FuncaoSerializer(ModelSerializer):
 
     class Meta:
         model = Funcao
-        fields = ('id', 'nomefuncao',)
+        fields = ('id', 'name', 'tabela')
+
+    read_only_fields = ['tabela']
