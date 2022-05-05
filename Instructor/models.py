@@ -3,7 +3,7 @@ from helpers.models import TrackingModel
 from django.db.models import signals
 from django.template.defaultfilters import slugify
 from authentication.models import User
-from Zipcode.models import Zipcode
+from zipcode.models import Zipcode
 
 # Create your models here.
 

@@ -1,39 +1,39 @@
-from instructor.pagination import CustomPageNumberPagination
-from instructor.serializers import InstructorSerializer
+from cost_center.pagination import CustomPageNumberPagination
+from cost_center.serializers import CostCenterSerializer
 from django.shortcuts import render
 from rest_framework import permissions, filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from authentication.models import User
-from instructor.models import Instructor
+from cost_center.models import CostCenter
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 
-class InstructorAPIView(ListCreateAPIView):
-    serializer_class = InstructorSerializer
+class CostCenterAPIView(ListCreateAPIView):
+    serializer_class = CostCenterSerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = (IsAuthenticated,)
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'name']
-    search_fields = ['id', 'name']
-    ordering_fields = ['id', 'name']
+    filterset_fields = ['id', 'costcenter']
+    search_fields = ['id', 'costcenter']
+    ordering_fields = ['id', 'costcenter']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
-        return Instructor.objects.filter(username=self.request.user)
+        return CostCenter.objects.filter(username=self.request.user)
 
 
-class InstructorDetailAPIView(RetrieveUpdateDestroyAPIView):
-    serializer_class = InstructorSerializer
+class CostCenterDetailAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = CostCenterSerializer
 
     permission_classes = (IsAuthenticated,)
 
-    lookup_field = "id"
+    lookup_field = "costcenter"
 
     def get_queryset(self):
-        return Instructor.objects.filter(username=self.request.user)
+        return CostCenter.objects.filter(username=self.request.user)

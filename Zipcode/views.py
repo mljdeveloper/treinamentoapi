@@ -1,10 +1,10 @@
-from Zipcode.pagination import CustomPageNumberPagination
-from Zipcode.serializers import ZipcodeSerializer
+from zipcode.pagination import CustomPageNumberPagination
+from zipcode.serializers import ZipcodeSerializer
 from django.shortcuts import render
 from rest_framework import permissions, filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from Zipcode.models import Zipcode
+from zipcode.models import Zipcode
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 

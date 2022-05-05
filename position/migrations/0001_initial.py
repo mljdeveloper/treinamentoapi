@@ -15,14 +15,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name='Position',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('create_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('name', models.CharField(max_length=100)),
-                ('display', models.BooleanField(default=True)),
-                ('username', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='username_category_set', to=settings.AUTH_USER_MODEL)),
+                ('mostrar', models.BooleanField(default=True)),
+                ('username', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='username_position_set', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('-create_at',),

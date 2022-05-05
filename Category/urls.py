@@ -1,4 +1,4 @@
-from Category.views import CategoryAPIView, CategoryDetailAPIView
+from category.views import CategoryAPIView, CategoryDetailAPIView
 from django.urls import path
 
 urlpatterns = [

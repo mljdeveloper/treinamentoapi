@@ -1,4 +1,4 @@
-from Zipcode.views import ZipcodeAPIView, ZipcodeDetailAPIView
+from zipcode.views import ZipcodeAPIView, ZipcodeDetailAPIView
 from django.urls import path
 
 urlpatterns = [

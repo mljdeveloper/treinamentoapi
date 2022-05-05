@@ -35,11 +35,12 @@ schema_view = get_schema_view(openapi.Info(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/auth/", include("authentication.urls")),
-    path("api/funcao/", include("funcao.urls")),
-    path("api/Category/", include("Category.urls")),
-    path("api/Zipcode/", include("Zipcode.urls")),
-    path("api/Instructor/", include("Instructor.urls")),
-    path("api/Course/", include("Course.urls")),
+    path("api/position/", include("position.urls")),
+    path("api/category/", include("category.urls")),
+    path("api/zipcode/", include("zipcode.urls")),
+    path("api/instructor/", include("instructor.urls")),
+    path("api/course/", include("course.urls")),
+    path("api/cost_center/", include("cost_center.urls")),
     path('swagger.json', schema_view.without_ui(
         cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger',

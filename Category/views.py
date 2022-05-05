@@ -1,11 +1,11 @@
-from Category.pagination import CustomPageNumberPagination
-from Category.serializers import CategorySerializer
+from category.pagination import CustomPageNumberPagination
+from category.serializers import CategorySerializer
 from django.shortcuts import render
 from rest_framework import permissions, filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from authentication.models import User
-from Category.models import Category
+from category.models import Category
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 

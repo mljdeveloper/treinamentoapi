@@ -1,6 +1,6 @@
 from django.db import models
 from authentication.models import User
-from Instructor.models import Instructor
+from instructor.models import Instructor
 from helpers.models import TrackingModel
 # Create your models here.
 
@@ -15,7 +15,7 @@ class Course(TrackingModel):
 
     @property
     def tabela(self):
-        valor = "Course"
+        valor = "course"
         return valor
 
     def __str__(self):

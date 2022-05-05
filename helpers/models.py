@@ -1,5 +1,4 @@
 from django.db import models
-from Zipcode.models import Zipcode
 
 
 class TrackingModel(models.Model):

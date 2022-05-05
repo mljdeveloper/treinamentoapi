@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FuncaoConfig(AppConfig):
+class CostCenterConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'funcao'
+    name = 'cost_center'

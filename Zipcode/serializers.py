@@ -1,7 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from dataclasses import field
 from rest_framework.serializers import ModelSerializer
-from Zipcode.models import Zipcode
+from zipcode.models import Zipcode
 
 
 class ZipcodeSerializer(ModelSerializer):

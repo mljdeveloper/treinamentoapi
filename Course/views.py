@@ -1,11 +1,11 @@
-from Course.pagination import CustomPageNumberPagination
-from Course.serializers import CourseSerializer
+from course.pagination import CustomPageNumberPagination
+from course.serializers import CourseSerializer
 from django.shortcuts import render
 from rest_framework import permissions, filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from authentication.models import User
-from Course.models import Course
+from course.models import Course
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 

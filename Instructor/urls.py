@@ -1,4 +1,4 @@
-from Instructor.views import InstructorAPIView, InstructorDetailAPIView
+from instructor.views import InstructorAPIView, InstructorDetailAPIView
 from django.urls import path
 
 urlpatterns = [

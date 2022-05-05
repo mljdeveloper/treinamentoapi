@@ -1,7 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from dataclasses import field
 from rest_framework.serializers import ModelSerializer
-from Instructor.models import Instructor
+from instructor.models import Instructor
 
 
 class InstructorSerializer(ModelSerializer):
