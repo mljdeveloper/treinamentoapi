@@ -17,9 +17,9 @@ class CategoryAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'name']
-    search_fields = ['id', 'name']
-    ordering_fields = ['id', 'name']
+    filterset_fields = ['id', 'categoryname']
+    search_fields = ['id', 'categoryname']
+    ordering_fields = ['id', 'categoryname']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)
@@ -33,7 +33,7 @@ class CategoryDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated,)
 
-    lookup_field = "costcenter"
+    lookup_field = "id"
 
     def get_queryset(self):
         return Category.objects.filter(username=self.request.user)
