@@ -1,13 +1,13 @@
 from unittest.util import _MAX_LENGTH
 from dataclasses import field
 from rest_framework.serializers import ModelSerializer
-from position.models import Position
+from frequency.models import Frequency
 
 
-class PositionSerializer(ModelSerializer):
+class FrequencySerializer(ModelSerializer):
 
     class Meta:
-        model = Position
-        fields = ('id', 'name', 'display', 'tabela')
+        model = Frequency
+        fields = ('id', 'name', 'days', 'display', 'tabela')
 
     read_only_fields = ['tabela']

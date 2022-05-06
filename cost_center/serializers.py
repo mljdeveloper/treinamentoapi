@@ -8,6 +8,6 @@ class CostCenterSerializer(ModelSerializer):
 
     class Meta:
         model = CostCenter
-        fields = ('id', 'costcenter', 'name', 'tabela')
+        fields = ('id', 'costcenter', 'name', 'display', 'tabela')
 
         read_only_fields = ['tabela']

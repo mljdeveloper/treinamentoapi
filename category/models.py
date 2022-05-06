@@ -15,7 +15,7 @@ class Category(TrackingModel):
 
     @property
     def tabela(self):
-        valor = "Category"
+        valor = "category"
         return valor
 
     def __str__(self):

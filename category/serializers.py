@@ -8,6 +8,6 @@ class CategorySerializer(ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'tabela')
+        fields = ('id', 'name', 'display', 'tabela')
 
         read_only_fields = ['tabela']

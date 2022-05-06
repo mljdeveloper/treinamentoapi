@@ -24,7 +24,7 @@ class Instructor(TrackingModel):
 
     @property
     def tabela(self):
-        valor = "Instructor"
+        valor = "instructor"
         return valor
 
     def __str__(self):

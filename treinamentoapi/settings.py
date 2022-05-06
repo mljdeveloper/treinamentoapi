@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'instructor',
     'course',
     'cost_center',
+    'frequency',
 
 ]
 
