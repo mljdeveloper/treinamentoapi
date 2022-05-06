@@ -11,7 +11,7 @@ class Course(TrackingModel):
     instructor = models.ManyToManyField(Instructor)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
-                                 related_name='username_course_set', null=True, blank=True)
+                                 related_name='username_name_set', null=True, blank=True)
 
     @property
     def tabela(self):

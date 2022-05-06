@@ -33,7 +33,7 @@ class CategoryDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated,)
 
-    lookup_field = "id"
+    lookup_field = "costcenter"
 
     def get_queryset(self):
         return Category.objects.filter(username=self.request.user)
