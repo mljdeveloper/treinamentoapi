@@ -17,9 +17,9 @@ class CategoryAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'categoryname']
-    search_fields = ['id', 'categoryname']
-    ordering_fields = ['id', 'categoryname']
+    filterset_fields = ['id', 'name']
+    search_fields = ['id', 'name']
+    ordering_fields = ['id', 'name']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)

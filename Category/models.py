@@ -8,10 +8,10 @@ from django.utils import timezone
 
 
 class Category(TrackingModel):
-    categoryname = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
-                                 related_name='username_category_set', null=True, blank=True)
+                                 related_name='username_name_set', null=True, blank=True)
 
     @property
     def tabela(self):
