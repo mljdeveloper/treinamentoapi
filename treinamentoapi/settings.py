@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django_filters',
     'authentication',
     'position',
-    'category',
     'zipcode',
     'instructor',
     'course',
