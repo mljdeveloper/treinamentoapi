@@ -40,9 +40,9 @@ print(usuario.json())
 """
 
 
-hearder = {"Authorization": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1hcmNvcyIsImVtYWlsIjoibWFyY29zLmx1aXouamVzdXNAaG90bWFpbC5jb20iLCJleHAiOjE2NTIyNzEwNDl9.q4SsVbLAvMYmSvOta43jebFl7Ir_Mjk4k6HdGKgSWoo"}
+hearder = {"Authorization": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1hcmNvcyIsImVtYWlsIjoibWFyY29zLmx1aXouamVzdXNAaG90bWFpbC5jb20iLCJleHAiOjE2NTIzODQyMTV9.GTHIz76VgPH17QTfApnQ4Y11nJ-lFTtCFEbL4v4k07I"}
 
-get_response = requests.delete(url='http://127.0.0.1:8080/api/cost_center/?id=1',
+get_response = requests.delete(url='http://127.0.0.1:8080/api/costcenter/3',
                                headers=hearder
                                )
-print(get_response.json())
+print(get_response)

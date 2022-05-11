@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'zipcode',
     'instructor',
     'course',
-    'cost_center',
+    'costcenter',
     'frequency',
 
 ]
@@ -108,6 +108,14 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
 ]
 
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+)
 
 # REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [

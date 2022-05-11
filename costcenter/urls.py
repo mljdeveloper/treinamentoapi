@@ -1,4 +1,7 @@
-from cost_center.views import CostCenterAPIView, CostCenterDetailAPIView
+from costcenter.views import (CostCenterAPIView,
+                              CostCenterDetailAPIView)
+
+
 from django.urls import path
 
 urlpatterns = [

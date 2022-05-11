@@ -1,0 +1,1 @@
+heroku restart && heroku pg:reset DATABASE --confirm treinamentoapi && heroku run rake db:migrate

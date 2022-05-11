@@ -1,12 +1,14 @@
-from cost_center.pagination import CustomPageNumberPagination
-from cost_center.serializers import CostCenterSerializer
+from costcenter.pagination import CustomPageNumberPagination
+from costcenter.serializers import CostCenterSerializer
 from django.shortcuts import render
 from rest_framework import permissions, filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from authentication.models import User
-from cost_center.models import CostCenter
+from costcenter.models import CostCenter
 from django_filters.rest_framework import DjangoFilterBackend
+
+
 # Create your views here.
 
 
@@ -17,9 +19,9 @@ class CostCenterAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'cost_center']
-    search_fields = ['id', 'cost_center']
-    ordering_fields = ['id', 'cost_center']
+    filterset_fields = ['id', 'costcentercod']
+    search_fields = ['id', 'costcentercod']
+    ordering_fields = ['id', 'costcentercod']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)
