@@ -5,11 +5,11 @@ from helpers.models import TrackingModel
 
 
 class CostCenter(TrackingModel):
-    costcenter = models.CharField(max_length=10, unique=True)
+    cost_center = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=100, blank=False)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
-                                 related_name='username_costcenter_set', null=True, blank=True)
+                                 related_name='username_cost_center_set', null=True, blank=True)
 
     @property
     def tabela(self):

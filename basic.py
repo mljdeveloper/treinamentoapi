@@ -30,11 +30,19 @@ hearder = {"Authorization": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2V
 #                            headers=hearder
                             )
 print(get_response.json()['results'][-1]['nomefuncao'])
-"""
-
 
 usuario = requests.post('http://localhost:8080/api/auth/login', {
     'email': "marcos.luiz.jesus@hotmail.com",
     'password': "10102020"
 })
 print(usuario.json())
+
+"""
+
+
+hearder = {"Authorization": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1hcmNvcyIsImVtYWlsIjoibWFyY29zLmx1aXouamVzdXNAaG90bWFpbC5jb20iLCJleHAiOjE2NTIyNzEwNDl9.q4SsVbLAvMYmSvOta43jebFl7Ir_Mjk4k6HdGKgSWoo"}
+
+get_response = requests.delete(url='http://127.0.0.1:8080/api/cost_center/?id=1',
+                               headers=hearder
+                               )
+print(get_response.json())

@@ -17,9 +17,9 @@ class CostCenterAPIView(ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'costcenter']
-    search_fields = ['id', 'costcenter']
-    ordering_fields = ['id', 'costcenter']
+    filterset_fields = ['id', 'cost_center']
+    search_fields = ['id', 'cost_center']
+    ordering_fields = ['id', 'cost_center']
 
     def perform_create(self, serializer):
         return serializer.save(username=self.request.user)
@@ -33,7 +33,7 @@ class CostCenterDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated,)
 
-    lookup_field = "costcenter"
+    lookup_field = "id"
 
     def get_queryset(self):
         return CostCenter.objects.filter(username=self.request.user)

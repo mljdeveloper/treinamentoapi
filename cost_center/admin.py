@@ -5,11 +5,11 @@ from .models import CostCenter
 
 
 class CostCenterAdmin(admin.ModelAdmin):
-    list_display = ('id', 'costcenter', 'name', 'create_at',
+    list_display = ('id', 'cost_center', 'name', 'create_at',
                     'updated_at', 'display', 'username')
-    list_display_links = ('id', 'costcenter')
+    list_display_links = ('id', 'cost_center')
     list_per_page = 200
-    search_fields = ('id', 'costcenter',)
+    search_fields = ('id', 'cost_center',)
     list_editable = ('display',)
     exclude = ['username', ]
 
