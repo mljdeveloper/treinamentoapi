@@ -106,6 +106,7 @@ DATABASES = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
+    'https://gestaotreinamento.herokuapp.com',
 ]
 
 CORS_ALLOW_METHODS = (
