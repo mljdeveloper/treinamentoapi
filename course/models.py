@@ -20,3 +20,13 @@ class Course(TrackingModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'course'
+        verbose_name_plural = 'courses'
+
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'username'],
+                                    name='PKCourse_Name_UserName')
+        ]

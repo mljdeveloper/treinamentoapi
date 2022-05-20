@@ -20,3 +20,9 @@ class Category(TrackingModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'username'],
+                                    name='PKCategory_Name_UserName')
+        ]

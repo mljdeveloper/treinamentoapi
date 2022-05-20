@@ -24,3 +24,8 @@ class Frequency(TrackingModel):
         ordering = ('name',)
         verbose_name = 'frequency'
         verbose_name_plural = 'frequencies'
+
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'username'],
+                                    name='PKFrequency_Name_UserName')
+        ]

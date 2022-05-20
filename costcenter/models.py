@@ -18,3 +18,9 @@ class CostCenter(TrackingModel):
 
     def __str__(self):
         return self.costcentercod
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['costcentercod', 'username'],
+                                    name='PKCostCenter_CostCenterCod_UserName')
+        ]

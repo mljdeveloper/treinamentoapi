@@ -35,6 +35,11 @@ class Instructor(TrackingModel):
         verbose_name = 'Instructor'
         verbose_name_plural = 'Instructors'
 
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'username'],
+                                    name='PKInstructor_Name_UserName')
+        ]
+
 
 def instructor_pre_save(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.name)
