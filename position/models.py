@@ -25,7 +25,6 @@ class Position(TrackingModel):
         verbose_name = 'Position'
         verbose_name_plural = 'Positions'
 
-
         constraints = [
             models.UniqueConstraint(fields=['name', 'username'],
                                     name='PKPosition_Name_UserName')

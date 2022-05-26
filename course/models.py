@@ -8,6 +8,7 @@ from helpers.models import TrackingModel
 class Course(TrackingModel):
     name = models.CharField(max_length=100, unique=True, blank=False)
     period = models.CharField(max_length=10, null=True, blank=True)
+    mingrade = models.FloatField(null=True, blank=True, default=None)
     instructor = models.ManyToManyField(Instructor)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
