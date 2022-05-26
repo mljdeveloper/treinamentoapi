@@ -8,6 +8,6 @@ class CourseSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', 'name', 'period', 'display', 'tabela')
+        fields = ('id', 'name', 'period',  'mingrade', 'display', 'tabela')
 
         read_only_fields = ['tabela']

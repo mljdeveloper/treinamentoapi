@@ -6,7 +6,7 @@ from authentication.models import User
 
 
 class Frequency(TrackingModel):
-    name = models.CharField(max_length=100, unique=True, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     days = models.IntegerField(blank=False)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,

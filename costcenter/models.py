@@ -5,7 +5,7 @@ from helpers.models import TrackingModel
 
 
 class CostCenter(TrackingModel):
-    costcentercod = models.CharField(max_length=10, unique=True)
+    costcentercod = models.CharField(max_length=10)
     name = models.CharField(max_length=100, blank=False)
     display = models.BooleanField(default=True)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
