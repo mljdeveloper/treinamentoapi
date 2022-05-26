@@ -14,7 +14,7 @@ class ZipcodeSerializer(ModelSerializer):
 
 
 class InstructorSerializer(ModelSerializer):
-    zip_code = CharField(source='zipcode.zipcode')
+    zip_code = CharField(source='zipcode.zipcode', read_only=True)
 
     class Meta:
         model = Instructor
