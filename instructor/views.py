@@ -36,4 +36,4 @@ class InstructorDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return Instructor.objects.filter(username=self.request.user)
+        return Instructor.objects.all().select_related("zipcode").filter(username=self.request.user)

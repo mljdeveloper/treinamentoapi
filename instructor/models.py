@@ -12,7 +12,8 @@ class Instructor(TrackingModel):
     slug = models.SlugField('Slug', max_length=100)
     name = models.CharField(max_length=100, blank=False)
 
-    zipcode = models.ForeignKey(Zipcode, on_delete=models.DO_NOTHING)
+    zipcode = models.ForeignKey(
+        Zipcode, related_name="zips", on_delete=models.DO_NOTHING)
     number = models.CharField(max_length=10, blank=False)
     codearea = models.CharField(max_length=4, null=True, blank=True)
     phonenumber = models.CharField(max_length=10, null=True, blank=True)
