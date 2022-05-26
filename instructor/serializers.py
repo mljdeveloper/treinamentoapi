@@ -21,4 +21,4 @@ class InstructorSerializer(ModelSerializer):
         fields = ('id', 'name', 'number',
                   'codearea', 'phonenumber', 'email', 'display', 'tabela', 'zipcode', 'zip_code')
 
-    read_only_fields = ['tabela']
+    read_only_fields = ['tabela', 'zip_code']
