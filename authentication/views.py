@@ -4,6 +4,8 @@ from authentication.serializers import LoginSerializer, RegisterSerializer
 from rest_framework import response, status, permissions
 from django.contrib.auth import authenticate
 from authentication.models import User
+from ttcompany.models import TTCompany
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -32,6 +34,22 @@ class RegisterAPIView(GenericAPIView):
 
         if serializers.is_valid():
             serializers.save()
+
+            name = request.GET.get('name', None).upper()
+
+            ObjUser = User.objects.get(
+                username=request.GET.get('username', None).upper())
+
+            try:
+                obj = TTCompany.objects.create(
+                    nomecargo=name.upper(),
+                    username=ObjUser,
+                )
+
+            except IntegrityError as e:
+                data = {'status': 1,
+                        'mensagem': e.message}
+
             return response.Response(serializers.data, status=status.HTTP_201_CREATED)
 
         return response.Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
