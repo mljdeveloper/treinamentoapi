@@ -95,4 +95,6 @@ class UserAPIView(ListAPIView):
     ordering_fields = ['id', 'username']
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return User.objects.none()  # return empty queryset
         return User.objects.filter(username=self.request.user)
