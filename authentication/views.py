@@ -48,8 +48,6 @@ class RegisterAPIView(GenericAPIView):
                 first_name = ObjUser.first_name
                 last_name = ObjUser.last_name
                 full_name = '{} {}'.format(first_name, last_name)
-                print(typeofuser)
-                print(full_name)
                 try:
                     TTCompany.objects.create(
                         contact=full_name.upper(),
