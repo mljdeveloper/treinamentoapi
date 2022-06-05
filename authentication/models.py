@@ -13,6 +13,10 @@ from datetime import datetime, timedelta
 # Create your models here.
 
 
+def upload_to(instance, filename):
+    return 'people/{filename}'.format(filename=filename)
+
+
 class MyUserManager(UserManager):
     def _create_user(self, username, email, password, **extra_fields):
         """
@@ -49,6 +53,14 @@ class MyUserManager(UserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
+
+    PEOPLE = 'P'
+    COMPANY = 'C'
+    TYPEOFUSER = [
+        (PEOPLE, _('People')),
+        (COMPANY, _('Company')),
+    ]
+
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
@@ -90,6 +102,14 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
         ),
     )
     parent_id = models.IntegerField(null=True, blank=True)
+    photo = models.ImageField(
+        _("Image"), upload_to=upload_to,  default='people/noimage.jpg')
+    cargo = models.CharField(_("cargo"), max_length=150, blank=True)
+    typeofuser = models.CharField(
+        max_length=8,
+        choices=TYPEOFUSER,
+        default=PEOPLE,
+    )
 
     objects = MyUserManager()
 
