@@ -20,9 +20,9 @@ class CreateCompanyAPIView(APIView):
 
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['username']
-    search_fields = ['username']
-    ordering_fields = ['username']
+    filterset_fields = ['id', 'name']
+    search_fields = ['id', 'name']
+    ordering_fields = ['id', 'name']
 
     def post(self, request, format=None):
         serializer = TTCompanySerializer(data=request.data)
@@ -38,7 +38,7 @@ class CompanyDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = (IsAuthenticated,)
 
-    lookup_field = "username"
+    lookup_field = "id"
 
     def get_queryset(self):
         return TTCompany.objects.filter(username=self.request.user)

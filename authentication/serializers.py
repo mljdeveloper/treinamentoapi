@@ -2,6 +2,8 @@ from dataclasses import field
 from unittest.util import _MAX_LENGTH
 from rest_framework import serializers
 from authentication.models import User
+from ttcompany.models import TTCompany
+from rest_framework.serializers import ModelSerializer, StringRelatedField, CharField
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -21,7 +23,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.ModelSerializer):
-
     password = serializers.CharField(
         max_length=120, min_length=6, write_only=True)
 
@@ -31,6 +32,6 @@ class LoginSerializer(serializers.ModelSerializer):
         }
         model = User
         fields = ('id', 'email', 'username', 'password',
-                  'token', 'is_staff', 'parent_id')
+                  'token', 'is_staff', 'parent_id', )
 
         read_only_fields = ['token', 'username']

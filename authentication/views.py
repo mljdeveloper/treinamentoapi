@@ -38,26 +38,6 @@ class RegisterAPIView(GenericAPIView):
         if serializers.is_valid():
             serializers.save()
 
-            ObjUser = User.objects.get(
-                username=request.data.get('username', '0'))
-
-            typeofuser = request.data.get('typeofuser', '0')
-
-            if typeofuser == 'C':
-
-                first_name = ObjUser.first_name
-                last_name = ObjUser.last_name
-                full_name = '{} {}'.format(first_name, last_name)
-                try:
-                    TTCompany.objects.create(
-                        contact=full_name.upper(),
-                        username=ObjUser,
-                    )
-
-                except IntegrityError as e:
-                    data = {'status': 1,
-                            'mensagem': e.message}
-
             return response.Response(serializers.data, status=status.HTTP_201_CREATED)
 
         return response.Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
