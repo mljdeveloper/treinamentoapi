@@ -5,6 +5,7 @@ from .serializers import TTUnitSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from authentication.models import User
+from ttcompany.models import TTCompany
 from django.contrib.auth import authenticate
 from rest_framework import response, status, permissions, filters
 from authentication.serializers import LoginSerializer, RegisterSerializer
@@ -33,7 +34,7 @@ class CreateUnitAPIView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class TTUnirDetailAPIView(RetrieveUpdateDestroyAPIView):
+class TTUnitDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = TTUnitSerializer
 
     permission_classes = (IsAuthenticated,)
@@ -41,4 +42,18 @@ class TTUnirDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return TTUnit.objects.all().select_related("ttcompany").filter(username=self.request.user)
+        return TTUnit.objects.all().filter(broker=self.request.user)
+
+
+class TTUnitDetalhes(RetrieveUpdateDestroyAPIView):
+    serializer_class = TTUnitSerializer
+
+    permission_classes = (IsAuthenticated,)
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        objCompany = TTCompany.objects.get(username=self.request.user)
+        print(self.request.user)
+        print(objCompany.name)
+        return TTUnit.objects.all().filter(company=objCompany)

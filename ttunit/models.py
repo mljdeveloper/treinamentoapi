@@ -27,8 +27,17 @@ class TTUnit(TrackingModel):
 
     slug = models.SlugField('Atalho', null=False, unique=True)
     unittype = models.CharField(max_length=20, null=True, blank=True)
-    company = models.ForeignKey(TTCompany, on_delete=models.DO_NOTHING)
+    company = models.ForeignKey(
+        TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
     broker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    zipcode = models.CharField(max_length=10,   null=True, blank=False)
+    address = models.CharField(max_length=200,  null=True, blank=False)
+    address1 = models.CharField(max_length=100,  null=True, blank=False)
+    county = models.CharField(max_length=100,  null=True, blank=False)
+    city = models.CharField(max_length=100, null=True, blank=False)
+    st = models.CharField(max_length=2,  null=True, blank=False)
+
     status = models.CharField(
         max_length=8,
         choices=status,
@@ -53,7 +62,7 @@ class TTUnit(TrackingModel):
         return valor
 
     def __str__(self):
-        return self.unittype
+        return '%d %s %s %s %s %s %s %s' % (self.id, self.unittype, self.city, self.price, self.status, self.bedroom, self.restrooom, self.petpolicy)
 
     class Meta:
         ordering = ('id',)
@@ -62,7 +71,7 @@ class TTUnit(TrackingModel):
 
 
 def ttunit_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.unittype)
+    instance.slug = slugify(instance.id)
 
 
 signals.pre_save.connect(ttunit_pre_save, sender=TTUnit)
