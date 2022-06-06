@@ -25,6 +25,8 @@ class CourseAPIView(ListCreateAPIView):
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Course.objects.none()
         return Course.objects.filter(username=self.request.user)
 
 
@@ -36,4 +38,6 @@ class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Course.objects.none()
         return Course.objects.filter(username=self.request.user)

@@ -5,7 +5,7 @@ from .models import TTCompany
 
 
 class TTCompanyAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'contact', 'codeare', 'phone', 'create_at',
+    list_display = ('id', 'name', 'contact', 'codearea', 'phone', 'create_at',
                     'updated_at', 'username')
     list_display_links = ('id', 'contact')
     list_per_page = 200

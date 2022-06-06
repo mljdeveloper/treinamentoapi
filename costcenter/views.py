@@ -27,6 +27,8 @@ class CostCenterAPIView(ListCreateAPIView):
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return CostCenter.objects.none()
         return CostCenter.objects.filter(username=self.request.user)
 
 

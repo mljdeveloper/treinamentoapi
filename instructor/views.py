@@ -25,6 +25,9 @@ class InstructorAPIView(ListCreateAPIView):
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Instructor.objects.none()
+
         return Instructor.objects.filter(username=self.request.user)
 
 

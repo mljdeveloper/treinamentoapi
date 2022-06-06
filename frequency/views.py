@@ -25,6 +25,8 @@ class FrequencyAPIView(ListCreateAPIView):
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Frequency.objects.none()
         return Frequency.objects.filter(username=self.request.user)
 
 

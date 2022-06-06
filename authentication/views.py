@@ -16,6 +16,7 @@ from rest_framework import permissions, filters
 class AuthUserAPIView(GenericAPIView):
 
     permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = RegisterSerializer
 
     def get(self, request):
         user = request.user

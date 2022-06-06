@@ -17,7 +17,7 @@ class TTCompany(TrackingModel):
     name = models.CharField(max_length=100, blank=False)
     contact = models.CharField(max_length=100, blank=False)
     address = models.CharField(max_length=200, blank=False)
-    codeare = models.CharField(max_length=3, blank=False)
+    codearea = models.CharField(max_length=3, blank=False)
     phone = models.CharField(max_length=10, blank=False)
     username = models.ForeignKey(to=User, on_delete=models.DO_NOTHING,
                                  related_name='username_ttcompany_set', null=True, blank=True)
