@@ -23,6 +23,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.ModelSerializer):
+
+    username_ttcompany_set = serializers.PrimaryKeyRelatedField(
+        many=True, read_only=True)
+
     password = serializers.CharField(
         max_length=120, min_length=6, write_only=True)
 
@@ -32,6 +36,6 @@ class LoginSerializer(serializers.ModelSerializer):
         }
         model = User
         fields = ('id', 'email', 'username', 'password',
-                  'token', 'is_staff', 'parent_id', )
+                  'token', 'is_staff', 'parent_id', 'username_ttcompany_set')
 
         read_only_fields = ['token', 'username']
