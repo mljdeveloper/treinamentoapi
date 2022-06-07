@@ -1,7 +1,7 @@
 
 from ttcompany.models import TTCompany
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TTCompanySerializer
+from .serializers import TTCompanySerializer, TTUnitSerializers
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from authentication.models import User
@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from ttunit.models import TTUnit
 from django.views.generic import View
+from rest_framework import generics
 
 
 class CreateCompanyAPIView(APIView):
@@ -45,3 +46,13 @@ class CompanyDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return TTCompany.objects.filter(username=self.request.user)
+
+
+class CompanyUnitDetailAPIView(generics.ListAPIView):
+    serializer_class = TTUnitSerializers
+
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        unitid = self.kwargs['id']
+        return TTUnit.objects.filter(company=unitid)

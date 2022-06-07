@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView, ListAPIView
-from authentication.serializers import LoginSerializer, RegisterSerializer
+from authentication.serializers import LoginSerializer, RegisterSerializer, TTownerSerializers
 from rest_framework import response, status, permissions
 from django.contrib.auth import authenticate
 from authentication.models import User
 from ttcompany.models import TTCompany
+from ttowner.models import TTowner
 from django.db import IntegrityError
 from rest_framework.parsers import MultiPartParser, FormParser
 from authentication.pagination import CustomPageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, filters
+from rest_framework import generics
 # Create your views here.
 
 
@@ -79,3 +81,23 @@ class UserAPIView(ListAPIView):
         if getattr(self, 'swagger_fake_view', False):
             return User.objects.none()  # return empty queryset
         return User.objects.filter(username=self.request.user)
+
+
+class UserOwnerDetailAPIView(generics.ListAPIView):
+    serializer_class = TTownerSerializers
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return TTowner.objects.filter(username=self.request.user)
+
+
+class UserOwnerByFirstName(generics.ListAPIView):
+    serializer_class = TTownerSerializers
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        first_name = self.kwargs['first_name']
+        return TTowner.objects.filter(username=self.request.user). \
+            filter(first_name__contains=first_name)

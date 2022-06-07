@@ -10,16 +10,16 @@ import random
 
 
 class TTlead(TrackingModel):
-    slug = models.SlugField('Atalho', null=False, unique=True)
+    slug = models.SlugField('Atalho', null=True, unique=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(_("email address"), blank=False, unique=True)
     codearea = models.CharField(max_length=3, blank=False)
     phone = models.CharField(max_length=10, blank=False)
     unit = models.ForeignKey(to=TTUnit, on_delete=models.CASCADE,
-                             related_name='ttunit', null=True, blank=True)
+                             related_name='ttunit_ttlead', null=True, blank=True)
     company = models.ForeignKey(to=TTCompany, on_delete=models.CASCADE,
-                                related_name='ttlead', null=True, blank=True)
+                                related_name='ttcompany_ttlead', null=True, blank=True)
 
     @property
     def tabela(self):

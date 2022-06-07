@@ -3,6 +3,7 @@ from unittest.util import _MAX_LENGTH
 from rest_framework import serializers
 from authentication.models import User
 from ttcompany.models import TTCompany
+from ttowner.models import TTowner
 from rest_framework.serializers import ModelSerializer, StringRelatedField, CharField
 
 
@@ -39,3 +40,12 @@ class LoginSerializer(serializers.ModelSerializer):
                   'token', 'is_staff', 'parent_id', 'username_ttcompany_set')
 
         read_only_fields = ['token', 'username']
+
+
+class TTownerSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = TTowner
+        fields = "__all__"
+
+    read_only_fields = ['tabela']
