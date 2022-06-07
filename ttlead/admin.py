@@ -13,7 +13,7 @@ class TTLeadAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(TTLeadAdmin, self).get_queryset(request)
-        return qs.filter(username=request.user)
+        return qs.filter()
 
     def save_model(self, request, obj, form, change):
         obj.username = request.user

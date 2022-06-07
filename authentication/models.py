@@ -118,6 +118,11 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     REQUIRED_FIELDS = ["username"]
 
     @property
+    def tabela(self):
+        valor = "ttowner"
+        return valor
+
+    @property
     def token(self):
         token = jwt.encode({'username': self.username,
                             'email': self.email,
