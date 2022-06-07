@@ -2,13 +2,10 @@ from django.db import models
 from authentication.models import User
 from ttcompany.models import TTCompany
 from helpers.models import TrackingModel
-from ttowner.models import TTowner
 from django.db.models import signals
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 import random
-
-from ttowner.models import TTowner
 # Create your models here.
 
 
@@ -33,8 +30,6 @@ class TTUnit(TrackingModel):
     unittype = models.CharField(max_length=20, null=True, blank=True)
     company = models.ForeignKey(
         TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
-    # owner = models.ForeignKey(
-    #   TTowner, related_name='ttowner', on_delete=models.DO_NOTHING)
     broker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     zipcode = models.CharField(max_length=10,   null=True, blank=False)
