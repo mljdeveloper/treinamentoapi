@@ -1,6 +1,7 @@
 from django.db import models
 from authentication.models import User
 from ttcompany.models import TTCompany
+from ttowner.models import TTowner
 from helpers.models import TrackingModel
 from django.db.models import signals
 from django.template.defaultfilters import slugify
@@ -31,7 +32,8 @@ class TTUnit(TrackingModel):
     company = models.ForeignKey(
         TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
     broker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-
+    owner = models.ForeignKey(
+        TTowner, related_name='ttowner', on_delete=models.DO_NOTHING)
     zipcode = models.CharField(max_length=10,   null=True, blank=False)
     address = models.CharField(max_length=200,  null=True, blank=False)
     address1 = models.CharField(max_length=100,  null=True, blank=False)

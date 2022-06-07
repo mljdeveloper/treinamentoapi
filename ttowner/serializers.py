@@ -16,14 +16,14 @@ class TTownerUnitSerializers(serializers.ModelSerializer):
 
 
 class TTownerSerializer(ModelSerializer):
-    #ttowner = TTownerUnitSerializers(many=True, read_only=True)
+    ttowner = TTownerUnitSerializers(many=True, read_only=True)
 
     class Meta:
         model = TTowner
         fields = ('id', 'slug', 'first_name',
                   'last_name', 'zipcode', 'address', 'address1', 'county', 'city',
                   'st', 'email', 'codearea', 'phone', 'username',
-                  # 'ttowner',
+                  'ttowner',
                   'tabela')
 
     read_only_fields = ['tabela']
