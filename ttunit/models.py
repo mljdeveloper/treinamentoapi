@@ -33,7 +33,7 @@ class TTUnit(TrackingModel):
         TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
     broker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     owner = models.ForeignKey(
-        TTowner, related_name='ttowner', on_delete=models.DO_NOTHING)
+        TTowner, related_name='unit_ttowner', on_delete=models.DO_NOTHING)
     zipcode = models.CharField(max_length=10,   null=True, blank=False)
     address = models.CharField(max_length=200,  null=True, blank=False)
     address1 = models.CharField(max_length=100,  null=True, blank=False)

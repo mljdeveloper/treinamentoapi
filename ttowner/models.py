@@ -37,6 +37,11 @@ class TTowner(TrackingModel):
         verbose_name = 'Owner'
         verbose_name_plural = 'Owners'
 
+        constraints = [
+            models.UniqueConstraint(fields=['email', 'username'],
+                                    name='PKOwner_Email_UserName')
+        ]
+
 
 def ttowner_pre_save(signal, instance, sender, **kwargs):
     instance.slug = slugify(random.randrange(1, 10000000000, 3))

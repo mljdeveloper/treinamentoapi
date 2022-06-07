@@ -46,7 +46,7 @@ urlpatterns = [
     path("api/ttcompany/", include("ttcompany.urls")),
     path("api/ttunit/", include("ttunit.urls")),
     path("api/ttowner/", include("ttowner.urls")),
-
+    path("api/ttlead/", include("ttlead.urls")),
 
 
     path('swagger.json', schema_view.without_ui(
