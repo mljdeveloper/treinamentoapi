@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'frequency',
     'ttcompany',
     'ttunit',
+    'ttowner',
 
 ]
 

@@ -5,6 +5,7 @@ from helpers.models import TrackingModel
 from django.db.models import signals
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
+import random
 # Create your models here.
 
 
@@ -62,7 +63,7 @@ class TTUnit(TrackingModel):
         return valor
 
     def __str__(self):
-        return '%d %s %s %s %s %s %s %s' % (self.id, self.unittype, self.city, self.price, self.status, self.bedroom, self.restrooom, self.petpolicy)
+        return self.unittype
 
     class Meta:
         ordering = ('id',)
@@ -71,7 +72,7 @@ class TTUnit(TrackingModel):
 
 
 def ttunit_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.id)
+    instance.slug = slugify(random.randrange(1, 10000000000, 3))
 
 
 signals.pre_save.connect(ttunit_pre_save, sender=TTUnit)

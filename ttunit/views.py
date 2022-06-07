@@ -43,17 +43,3 @@ class TTUnitDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return TTUnit.objects.all().filter(broker=self.request.user)
-
-
-class TTUnitDetalhes(RetrieveUpdateDestroyAPIView):
-    serializer_class = TTUnitSerializer
-
-    permission_classes = (IsAuthenticated,)
-
-    lookup_field = "id"
-
-    def get_queryset(self):
-        objCompany = TTCompany.objects.get(username=self.request.user)
-        print(self.request.user)
-        print(objCompany.name)
-        return TTUnit.objects.all().filter(company=objCompany)

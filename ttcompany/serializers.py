@@ -5,7 +5,8 @@ from ttcompany.models import TTCompany
 from ttunit.models import TTUnit
 from rest_framework import serializers
 
-class TTUnitSerializer(ModelSerializer):
+
+class TTUnitSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = TTUnit
@@ -13,8 +14,9 @@ class TTUnitSerializer(ModelSerializer):
 
     read_only_fields = ['tabela']
 
+
 class TTCompanySerializer(ModelSerializer):
-    ttcompany = TTUnitSerializer(many=True, read_only=True)
+    ttcompany = TTUnitSerializers(many=True, read_only=True)
 
     class Meta:
         model = TTCompany
