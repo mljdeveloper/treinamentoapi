@@ -10,7 +10,10 @@ class TTUnitSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = TTUnit
-        fields = "__all__"
+        fields = ('id', 'unittype', 'company',
+                  'broker', 'status', 'active', 'businessdate',
+                  'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
+                  'owner', 'tabela',)
 
     read_only_fields = ['tabela']
 

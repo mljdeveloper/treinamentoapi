@@ -55,4 +55,4 @@ class CompanyUnitDetailAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         unitid = self.kwargs['id']
-        return TTUnit.objects.filter(company=unitid)
+        return TTUnit.objects.all().filter(company=unitid)

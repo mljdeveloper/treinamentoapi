@@ -56,7 +56,7 @@ class TTUnit(TrackingModel):
         default=RENT,
     )
     bedroom = models.IntegerField(blank=True, null=True)
-    restrooom = models.IntegerField(blank=True, null=True)
+    restroom = models.IntegerField(blank=True, null=True)
     petpolicy = models.CharField(max_length=20, null=True, blank=True)
 
     @property
