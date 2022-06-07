@@ -6,7 +6,7 @@ from ttowner.models import TTowner
 from rest_framework import serializers
 
 
-class TTownerSerializer(ModelSerializer):
+class TTownerSerializers(ModelSerializer):
 
     class Meta:
         model = TTowner
@@ -17,13 +17,13 @@ class TTownerSerializer(ModelSerializer):
 
 class TTUnitSerializer(ModelSerializer):
 
-    ttowner = TTownerSerializer(many=True, read_only=True)
+    ttowner = TTownerSerializers(many=True, read_only=True)
 
     class Meta:
         model = TTUnit
         fields = ('id', 'unittype', 'company',
                   'broker', 'status', 'active', 'businessdate',
-                  'price', 'modal', 'bedroom', 'restrooom', 'petpolicy', 'ttowner',
+                  'price', 'modal', 'bedroom', 'restrooom', 'petpolicy', 'owner', 'ttowner',
                   'tabela')
 
     read_only_fields = ['tabela']
