@@ -42,4 +42,4 @@ class TTUnitDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return TTUnit.objects.all().filter(username=self.request.user)
+        return TTUnit.objects.all().filter(broker=self.request.user)

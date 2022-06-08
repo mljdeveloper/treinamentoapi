@@ -109,7 +109,6 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "https://gestaotreinamento.herokuapp.com"
