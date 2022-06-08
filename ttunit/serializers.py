@@ -15,6 +15,7 @@ class TTUnitSerializer(ModelSerializer):
         fields = ('id', 'unittype', 'company',
                   'broker', 'status', 'active', 'businessdate',
                   'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
+                  'zipcode', 'address', 'address1', 'county', 'city', 'st',
                   'owner', 'description', 'tabela',)
 
     read_only_fields = ['tabela']
