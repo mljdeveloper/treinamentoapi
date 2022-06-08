@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'treinamentoapi.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -108,7 +108,7 @@ DATABASES = {
 DATABASES = {
     'default': dj_database_url.config()
 }
-"""
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "https://gestaotreinamento.herokuapp.com"
