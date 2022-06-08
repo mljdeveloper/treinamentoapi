@@ -5,7 +5,7 @@ from .models import TTlead
 
 
 class TTLeadAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'codearea', 'phone', 'create_at',
+    list_display = ('id', 'first_name', 'last_name', 'codearea', 'sentemail', 'phone', 'create_at',
                     'unit',)
     list_display_links = ('id', 'first_name')
     list_per_page = 200
