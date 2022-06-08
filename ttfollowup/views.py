@@ -1,7 +1,7 @@
-from ttlead.pagination import CustomPageNumberPagination
-from ttlead.models import TTlead
+from ttfollowup.pagination import CustomPageNumberPagination
+from ttfollowup.models import TTfollowup
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TTleadSerializer
+from .serializers import TTFollowupSerializer
 from django.shortcuts import get_object_or_404
 from authentication.models import User
 from django.contrib.auth import authenticate
@@ -15,7 +15,7 @@ from ttcompany.models import TTCompany
 from rest_framework import generics
 
 
-class CreateLeadAPIView(APIView):
+class CreateFollowUpAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     pagination_class = CustomPageNumberPagination
     filter_backends = [DjangoFilterBackend,
@@ -25,7 +25,7 @@ class CreateLeadAPIView(APIView):
     ordering_fields = ['id']
 
     def post(self, request, format=None):
-        serializer = TTleadSerializer(data=request.data)
+        serializer = TTFollowupSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -34,21 +34,30 @@ class CreateLeadAPIView(APIView):
 
 
 class TTLeadDetailAPIView(RetrieveUpdateDestroyAPIView):
-    serializer_class = TTleadSerializer
+    serializer_class = TTFollowupSerializer
 
     permission_classes = (IsAuthenticated,)
 
     lookup_field = "id"
 
     def get_queryset(self):
-        return TTlead.objects.all()
+        return TTfollowup.objects.all()
 
 
-class CompanyLeadDetailAPIView(generics.ListAPIView):
-    serializer_class = TTleadSerializer
+class BrokerFollowupDetailAPIView(generics.ListAPIView):
+    serializer_class = TTFollowupSerializer
 
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        unitid = self.kwargs['id']
-        return TTlead.objects.all().filter(company=unitid)
+        return TTfollowup.objects.all().filter(broker=self.request.user)
+
+
+class LeadFollowupDetailAPIView(generics.ListAPIView):
+    serializer_class = TTFollowupSerializer
+
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        lead_id = self.kwargs['id']
+        return TTfollowup.objects.all().filter(lead=lead_id)

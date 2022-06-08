@@ -27,7 +27,7 @@ class TTlead(TrackingModel):
         return valor
 
     def __str__(self):
-        return self.last_name
+        return '%s %s' % (self.first_name, self.last_name)
 
     class Meta:
         ordering = ('last_name',)
