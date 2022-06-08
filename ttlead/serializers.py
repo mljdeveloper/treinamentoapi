@@ -10,6 +10,6 @@ class TTleadSerializer(ModelSerializer):
     class Meta:
         model = TTlead
         fields = ('id', 'slug', 'first_name',
-                  'last_name', 'email', 'codearea', 'phone', 'tabela', 'unit', 'company')
+                  'last_name', 'email', 'codearea', 'phone', 'tabela', 'unit', 'company', 'sent_email',)
 
     read_only_fields = ['tabela']

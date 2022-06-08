@@ -20,7 +20,7 @@ class TTlead(TrackingModel):
                              related_name='ttunit_ttlead', null=True, blank=True)
     company = models.ForeignKey(to=TTCompany, on_delete=models.CASCADE,
                                 related_name='ttcompany_ttlead', null=True, blank=True)
-    sentemail = models.BooleanField(default=False)
+    sent_email = models.BooleanField(default=False)
 
     @property
     def tabela(self):
