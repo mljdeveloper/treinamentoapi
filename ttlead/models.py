@@ -21,6 +21,7 @@ class TTlead(TrackingModel):
     company = models.ForeignKey(to=TTCompany, on_delete=models.CASCADE,
                                 related_name='ttcompany_ttlead', null=True, blank=True)
     sent_email = models.BooleanField(default=False)
+    message = models.TextField(max_length=4000, null=True, blank=True)
 
     @property
     def tabela(self):

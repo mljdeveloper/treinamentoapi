@@ -4,6 +4,8 @@ from rest_framework.serializers import ModelSerializer, StringRelatedField, Char
 from ttcompany.models import TTCompany
 from ttunit.models import TTUnit
 from rest_framework import serializers
+from ttowner.serializers import TTownerSerializer
+from rest_framework.serializers import ModelSerializer, StringRelatedField, CharField
 
 
 class TTUnitSerializers(serializers.ModelSerializer):
@@ -13,7 +15,7 @@ class TTUnitSerializers(serializers.ModelSerializer):
         fields = ('id', 'unittype', 'company',
                   'broker', 'status', 'active', 'businessdate',
                   'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
-                  'owner', 'tabela',)
+                  'owner', 'tabela')
 
     read_only_fields = ['tabela']
 
