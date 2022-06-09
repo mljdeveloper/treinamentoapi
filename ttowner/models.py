@@ -9,7 +9,7 @@ import random
 
 
 class TTowner(TrackingModel):
-    slug = models.SlugField('Atalho', null=False, unique=True)
+    slug = models.SlugField('Atalho', null=True, unique=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=10,   null=True, blank=False)
