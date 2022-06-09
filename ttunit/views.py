@@ -16,22 +16,33 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-class CreateUnitAPIView(APIView):
+class CreateUnitAPIView(ListCreateAPIView):
+    serializer_class = TTUnitSerializer
     permission_classes = (IsAuthenticated,)
     pagination_class = CustomPageNumberPagination
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id']
+    filterset_fields = ['id', 'price', 'bedroom',
+                        'restroom', 'unittype', 'city']
     search_fields = ['id']
     ordering_fields = ['id']
 
-    def post(self, request, format=None):
+    def perform_create(self, serializer):
+        return serializer.save(broker=self.request.user)
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return TTUnit.objects.none()
+        return TTUnit.objects.filter(broker=self.request.user)
+
+
+"""     def post(self, request, format=None):
         serializer = TTUnitSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) """
 
 
 class TTUnitDetailAPIView(RetrieveUpdateDestroyAPIView):

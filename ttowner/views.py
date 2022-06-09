@@ -15,22 +15,23 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-class CreateOwnerAPIView(APIView):
+class CreateOwnerAPIView(ListCreateAPIView):
+    serializer_class = TTownerSerializer
     permission_classes = (IsAuthenticated,)
     pagination_class = CustomPageNumberPagination
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id']
-    search_fields = ['id']
-    ordering_fields = ['id']
+    filterset_fields = ['id', 'first_name', 'last_name']
+    search_fields = ['id', 'first_name', 'last_name']
+    ordering_fields = ['first_name']
 
-    def post(self, request, format=None):
-        serializer = TTownerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        return serializer.save(username=self.request.user)
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return TTowner.objects.none()
+        return TTowner.objects.filter(username=self.request.user)
 
 
 class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):

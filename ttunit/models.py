@@ -55,8 +55,8 @@ class TTUnit(TrackingModel):
         choices=modal,
         default=RENT,
     )
-    bedroom = models.IntegerField(blank=True, null=True)
-    restroom = models.IntegerField(blank=True, null=True)
+    bedroom = models.CharField(max_length=2, blank=True, null=True)
+    restroom = models.CharField(max_length=2, blank=True, null=True)
     petpolicy = models.CharField(max_length=20, null=True, blank=True)
     description = models.TextField(max_length=4000, null=True, blank=True)
 

@@ -8,8 +8,8 @@ from ttowner.models import TTowner
 
 class TTUnitSerializer(ModelSerializer):
 
-    unit_ttowner = serializers.PrimaryKeyRelatedField(
-        many=True, read_only=True)
+    """  unit_ttowner = serializers.PrimaryKeyRelatedField(
+         many=True, read_only=True) """
 
     class Meta:
         model = TTUnit
@@ -17,6 +17,6 @@ class TTUnitSerializer(ModelSerializer):
                   'broker', 'status', 'active', 'businessdate',
                   'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
                   'zipcode', 'address', 'address1', 'county', 'city', 'st',
-                  'owner', 'description', 'tabela', 'unit_ttowner')
+                  'owner', 'description', 'tabela', 'owner',)
 
     read_only_fields = ['tabela']
