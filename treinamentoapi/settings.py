@@ -113,7 +113,7 @@ DATABASES = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "https://gestaotreinamento.herokuapp.com",
-    "https://tecnotitan.herokuapp.com/"
+    "https://tecnotitan.herokuapp.com"
 ]
 
 CORS_ALLOW_METHODS = (
