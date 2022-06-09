@@ -46,7 +46,7 @@ class TTownerSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = TTowner
-        fields = ('id', 'slug', 'first_name',
+        fields = ('id', 'first_name',
                   'last_name', 'zipcode', 'address', 'address1', 'county', 'city',
                   'st', 'email', 'codearea', 'phone', 'username', 'tabela')
 
