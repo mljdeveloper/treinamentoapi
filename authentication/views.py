@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView
 from authentication.serializers import LoginSerializer, RegisterSerializer, TTownerSerializers
 from rest_framework import response, status, permissions
 from django.contrib.auth import authenticate
@@ -66,7 +66,7 @@ class LoginAPIView(GenericAPIView):
         return response.Response({"message": "Invalid Credentials, try again"}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-class UserAPIView(ListAPIView):
+class UserAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = RegisterSerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = (permissions.IsAuthenticated,)

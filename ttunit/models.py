@@ -27,7 +27,7 @@ class TTUnit(TrackingModel):
         (SELL, _('Sell')),
     ]
 
-    slug = models.SlugField('Atalho', null=False, unique=True)
+    slug = models.SlugField('Atalho', null=True, unique=True)
     unittype = models.CharField(max_length=20, null=True, blank=True)
     company = models.ForeignKey(
         TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
