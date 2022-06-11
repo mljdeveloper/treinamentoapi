@@ -49,7 +49,7 @@ class TTUnit(TrackingModel):
 
     active = models.BooleanField(default=False)
     businessdate = models.DateTimeField(null=True, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=18, decimal_places=2)
     modal = models.CharField(
         max_length=8,
         choices=modal,
