@@ -16,6 +16,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from ttunit.models import TTUnit
 from django.views.generic import View
 from rest_framework import generics
+from authentication.models import User
 
 
 class CreateCompanyAPIView(APIView):
@@ -56,3 +57,13 @@ class CompanyUnitDetailAPIView(generics.ListAPIView):
     def get_queryset(self):
         unitid = self.kwargs['id']
         return TTUnit.objects.all().filter(company=unitid)
+
+
+class CompanyUserDetailApiView(generics.ListAPIView):
+    serializer_class = RegisterSerializer
+
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        parent_id = self.kwargs['id']
+        return User.objects.all().filter(parent_id=parent_id)

@@ -102,3 +102,20 @@ class UserOwnerByFirstName(generics.ListAPIView):
         first_name = self.kwargs['first_name']
         return TTowner.objects.filter(username=self.request.user). \
             filter(first_name__contains=first_name)
+
+
+class PersonListAPIView(generics.ListAPIView):
+    serializer_class = RegisterSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = CustomPageNumberPagination
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['id', 'username']
+    search_fields = ['id']
+    ordering_fields = ['id']
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return User.objects.none()
+
+        return User.objects.filter(username=self.request.user)

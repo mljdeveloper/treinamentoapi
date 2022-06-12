@@ -10,6 +10,7 @@ import jwt
 from django.conf import settings
 from datetime import datetime, timedelta
 
+
 # Create your models here.
 
 
@@ -116,6 +117,9 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
+
+    class Meta:
+        ordering = ['-id']
 
     @property
     def tabela(self):
