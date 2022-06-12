@@ -72,13 +72,10 @@ class UserAPIView(RetrieveUpdateDestroyAPIView):
     pagination_class = CustomPageNumberPagination
     permission_classes = (permissions.IsAuthenticated,)
 
-    filter_backends = [DjangoFilterBackend,
-                       filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['id', 'username']
-    search_fields = ['id', 'username']
-    ordering_fields = ['id', 'username']
+    lookup_field = "id"
 
     def get_queryset(self):
+        print(self.request.user)
         if getattr(self, 'swagger_fake_view', False):
             return User.objects.none()  # return empty queryset
         return User.objects.filter(username=self.request.user)

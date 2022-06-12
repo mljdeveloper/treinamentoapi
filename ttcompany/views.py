@@ -64,6 +64,21 @@ class CompanyUserDetailApiView(generics.ListAPIView):
 
     permission_classes = (IsAuthenticated,)
 
+    lookup_field = "id"
+
     def get_queryset(self):
         parent_id = self.kwargs['id']
         return User.objects.all().filter(parent_id=parent_id)
+
+
+class CompanyUserRUD(RetrieveUpdateDestroyAPIView):
+    serializer_class = RegisterSerializer
+
+    permission_classes = (IsAuthenticated,)
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        userid = self.kwargs['id']
+        ObjUser = User.objects.get(id=userid)
+        return User.objects.all().filter(pk=ObjUser.id)
