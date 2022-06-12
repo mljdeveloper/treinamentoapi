@@ -123,7 +123,7 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
 
     @property
     def tabela(self):
-        valor = "ttowner"
+        valor = "user"
         return valor
 
     @property
