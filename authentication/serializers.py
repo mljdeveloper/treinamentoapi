@@ -9,9 +9,6 @@ from rest_framework.serializers import ModelSerializer, StringRelatedField, Char
 
 class RegisterSerializer(serializers.ModelSerializer):
 
-    password = serializers.CharField(
-        max_length=120, min_length=6, write_only=True)
-
     is_staff = serializers.BooleanField(default=True)
 
     class Meta:
@@ -39,7 +36,7 @@ class LoginSerializer(serializers.ModelSerializer):
         }
         model = User
         fields = ('id', 'email', 'username', 'password',
-                  'token', 'is_staff', 'parent_id', 'username_ttcompany_set')
+                  'token', 'is_staff', 'parent_id', 'typeofuser', 'username_ttcompany_set')
 
         read_only_fields = ['token', 'username']
 
