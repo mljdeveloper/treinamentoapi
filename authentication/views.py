@@ -55,7 +55,6 @@ class LoginAPIView(GenericAPIView):
     def post(self, request):
         email = request.data.get('email', None)
         password = request.data.get('password', None)
-        print('passei aqui')
 
         user = authenticate(username=email, password=password)
 
