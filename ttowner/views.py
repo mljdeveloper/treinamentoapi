@@ -69,3 +69,31 @@ class TTCompanyList(generics.ListAPIView):
             return TTowner.objects.all().filter(company_id=Objeto)
         else:
             return TTowner.objects.all().filter(username_id=Objeto)
+
+
+class UserOwnerByFirstName(generics.ListAPIView):
+    serializer_class = TTownerSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        first_name = self.kwargs['first_name']
+
+        #1 -C
+        #3 -P
+        unitid = self.kwargs['id']
+        typeofuser = self.request.user.typeofuser
+
+        if typeofuser == 'C':
+            Objeto = TTCompany.objects.all().get(id=unitid)
+        else:
+            Objeto = User.objects.all().get(id=unitid)
+
+        if typeofuser == 'C':
+            return TTowner.objects.all().filter(company_id=Objeto). \
+                filter(first_name__contains=first_name)
+        else:
+            return TTowner.objects.all().filter(username_id=Objeto). \
+                filter(first_name__contains=first_name)

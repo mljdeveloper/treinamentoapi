@@ -89,17 +89,6 @@ class UserOwnerDetailAPIView(generics.ListAPIView):
         return TTowner.objects.filter(username=self.request.user)
 
 
-class UserOwnerByFirstName(generics.ListAPIView):
-    serializer_class = TTownerSerializers
-
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_queryset(self):
-        first_name = self.kwargs['first_name']
-        return TTowner.objects.filter(username=self.request.user). \
-            filter(first_name__contains=first_name)
-
-
 class PersonListAPIView(generics.ListAPIView):
     serializer_class = RegisterSerializer
     permission_classes = (permissions.IsAuthenticated,)
