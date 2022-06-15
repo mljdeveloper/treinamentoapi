@@ -103,7 +103,12 @@ class UserAPIView(RetrieveUpdateDestroyAPIView):
         print(self.request.user)
         if getattr(self, 'swagger_fake_view', False):
             return User.objects.none()  # return empty queryset
-        return User.objects.filter(username=self.request.user)
+        typeofuser = self.request.user.typeofuser
+
+        if typeofuser == 'C':
+            return User.objects.all().filter(superuser_id=self.request.user)
+        else:
+            return User.objects.all().filter(username_id=self.request.user)
 
 
 class UserOwnerDetailAPIView(generics.ListAPIView):
@@ -112,7 +117,12 @@ class UserOwnerDetailAPIView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        return TTowner.objects.filter(username=self.request.user)
+        typeofuser = self.request.user.typeofuser
+
+        if typeofuser == 'C':
+            return User.objects.all().filter(superuser_id=self.request.user)
+        else:
+            return User.objects.all().filter(username_id=self.request.user)
 
 
 class PersonListAPIView(generics.ListAPIView):
@@ -129,4 +139,9 @@ class PersonListAPIView(generics.ListAPIView):
         if getattr(self, "swagger_fake_view", False):
             return User.objects.none()
 
-        return User.objects.filter(username=self.request.user)
+        typeofuser = self.request.user.typeofuser
+
+        if typeofuser == 'C':
+            return User.objects.all().filter(superuser_id=self.request.user)
+        else:
+            return User.objects.all().filter(username_id=self.request.user)
