@@ -106,7 +106,7 @@ class UserAPIView(RetrieveUpdateDestroyAPIView):
         typeofuser = self.request.user.typeofuser
 
         if typeofuser == 'C':
-            return User.objects.all().filter(superuser_id=self.request.user)
+            return User.objects.all().filter(parent_id=self.request.user)
         else:
             return User.objects.all().filter(username_id=self.request.user)
 
@@ -120,7 +120,7 @@ class UserOwnerDetailAPIView(generics.ListAPIView):
         typeofuser = self.request.user.typeofuser
 
         if typeofuser == 'C':
-            return User.objects.all().filter(superuser_id=self.request.user)
+            return User.objects.all().filter(parent_id=self.request.user)
         else:
             return User.objects.all().filter(username_id=self.request.user)
 
@@ -142,6 +142,6 @@ class PersonListAPIView(generics.ListAPIView):
         typeofuser = self.request.user.typeofuser
 
         if typeofuser == 'C':
-            return User.objects.all().filter(superuser_id=self.request.user)
+            return User.objects.all().filter(parent_id=self.request.user)
         else:
             return User.objects.all().filter(username_id=self.request.user)

@@ -24,7 +24,7 @@ class TTowner(TrackingModel):
     phone = models.CharField(max_length=10, blank=False)
     username = models.ForeignKey(to=User, on_delete=models.CASCADE,
                                  related_name='username_ttowner', null=True, blank=True)
-    superuser = models.ForeignKey(
+    parent_id = models.ForeignKey(
         to=User,  related_name='superuser_ttowner', on_delete=models.DO_NOTHING)
 
     @property

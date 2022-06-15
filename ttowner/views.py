@@ -54,7 +54,7 @@ class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):
         Objeto = User.objects.all().get(id=unitid)
 
         if typeofuser == 'C':
-            return TTowner.objects.all().get(superuser_id=Objeto)
+            return TTowner.objects.all().get(parent_id=Objeto)
         else:
             return TTowner.objects.all().get(username_id=Objeto)
 
@@ -75,7 +75,7 @@ class TTCompanyList(generics.ListAPIView):
         Objeto = User.objects.all().get(id=unitid)
 
         if typeofuser == 'C':
-            return TTowner.objects.all().filter(superuser_id=Objeto)
+            return TTowner.objects.all().filter(parent_id=Objeto)
         else:
             return TTowner.objects.all().filter(username_id=Objeto)
 
@@ -98,7 +98,7 @@ class UserOwnerByFirstName(generics.ListAPIView):
         Objeto = User.objects.all().get(id=unitid)
 
         if typeofuser == 'C':
-            return TTowner.objects.all().filter(superuser_id=Objeto). \
+            return TTowner.objects.all().filter(parent_id=Objeto). \
                 filter(first_name__contains=first_name)
         else:
             return TTowner.objects.all().filter(username_id=Objeto). \

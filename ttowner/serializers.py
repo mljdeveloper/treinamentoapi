@@ -23,6 +23,6 @@ class TTownerSerializer(ModelSerializer):
         fields = ('id', 'first_name',
                   'last_name', 'zipcode', 'address', 'address1', 'county', 'city',
                   'st', 'email', 'codearea', 'phone', 'username',
-                  'ttowner', 'superuser', 'tabela')
+                  'ttowner', 'parent_id', 'tabela')
 
     read_only_fields = ['tabela']
