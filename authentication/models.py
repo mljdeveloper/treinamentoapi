@@ -102,7 +102,7 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
 
         ),
     )
-    parent_id = models.IntegerField(null=True, blank=True)
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     photo = models.ImageField(
         _("Image"), upload_to=upload_to,  default='people/noimage.jpg')
     cargo = models.CharField(_("cargo"), max_length=150, blank=True)

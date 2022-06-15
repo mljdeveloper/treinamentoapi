@@ -28,6 +28,8 @@ class CreateOwnerAPIView(ListCreateAPIView):
     ordering_fields = ['first_name']
 
     def perform_create(self, serializer):
+        superuser = self.request.user.superuser_id
+        print(superuser)
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
@@ -44,7 +46,17 @@ class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return TTowner.objects.all().filter(username=self.request.user)
+        #1 -C
+        #3 -P
+        unitid = self.kwargs['id']
+        typeofuser = self.request.user.typeofuser
+
+        Objeto = User.objects.all().get(id=unitid)
+
+        if typeofuser == 'C':
+            return TTowner.objects.all().get(superuser_id=Objeto)
+        else:
+            return TTowner.objects.all().get(username_id=Objeto)
 
 
 class TTCompanyList(generics.ListAPIView):
@@ -60,13 +72,10 @@ class TTCompanyList(generics.ListAPIView):
         unitid = self.kwargs['id']
         typeofuser = self.request.user.typeofuser
 
-        if typeofuser == 'C':
-            Objeto = TTCompany.objects.all().get(id=unitid)
-        else:
-            Objeto = User.objects.all().get(id=unitid)
+        Objeto = User.objects.all().get(id=unitid)
 
         if typeofuser == 'C':
-            return TTowner.objects.all().filter(company_id=Objeto)
+            return TTowner.objects.all().filter(superuser_id=Objeto)
         else:
             return TTowner.objects.all().filter(username_id=Objeto)
 
@@ -86,13 +95,10 @@ class UserOwnerByFirstName(generics.ListAPIView):
         unitid = self.kwargs['id']
         typeofuser = self.request.user.typeofuser
 
-        if typeofuser == 'C':
-            Objeto = TTCompany.objects.all().get(id=unitid)
-        else:
-            Objeto = User.objects.all().get(id=unitid)
+        Objeto = User.objects.all().get(id=unitid)
 
         if typeofuser == 'C':
-            return TTowner.objects.all().filter(company_id=Objeto). \
+            return TTowner.objects.all().filter(superuser_id=Objeto). \
                 filter(first_name__contains=first_name)
         else:
             return TTowner.objects.all().filter(username_id=Objeto). \

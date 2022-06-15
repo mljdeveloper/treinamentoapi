@@ -28,8 +28,8 @@ class AuthUserAPIView(GenericAPIView):
         return response.Response({'user': serializer.data})
 
 
-class RegisterAPIView(GenericAPIView):
-    permission_classes = [permissions.AllowAny]
+class CorpRegisterAPIView(GenericAPIView):
+    permission_classes = [permissions.AllowAny, ]
     authentication_classes = []
     parser_classes = [MultiPartParser, FormParser]
     serializer_class = RegisterSerializer
@@ -40,6 +40,32 @@ class RegisterAPIView(GenericAPIView):
 
         if serializers.is_valid():
             serializers.save()
+
+            return response.Response(serializers.data, status=status.HTTP_201_CREATED)
+
+        return response.Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserRegisterAPIView(GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    parser_classes = [MultiPartParser, FormParser]
+    serializer_class = RegisterSerializer
+
+    def post(self, request):
+        if self.request.user.typeofuser == 'C':
+            objuser = User.objects.all().get(username=self.request.user.username)
+            varuseremail = request.data['email']
+
+        serializers = self.serializer_class(
+            data=request.data)
+
+        if serializers.is_valid():
+            serializers.save()
+
+            objUpdateUser = User.objects.get(email=varuseremail)
+            print(objUpdateUser)
+            objUpdateUser.parent_id = objuser
+            objUpdateUser.save()
 
             return response.Response(serializers.data, status=status.HTTP_201_CREATED)
 

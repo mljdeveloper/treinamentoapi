@@ -5,7 +5,7 @@ from .models import TTowner
 
 
 class TTownerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'company', 'zipcode',
+    list_display = ('id', 'first_name', 'last_name', 'zipcode',
                     'username')
     list_display_links = ('id', 'first_name')
     list_per_page = 200
