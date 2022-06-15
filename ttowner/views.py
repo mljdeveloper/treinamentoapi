@@ -49,9 +49,9 @@ class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):
         typeofuser = self.request.user.typeofuser
 
         if typeofuser == 'C':
-            return TTowner.objects.all().get(parent_id=self.request.user)
+            return TTowner.objects.all().filter(parent_id=self.request.user)
         else:
-            return TTowner.objects.all().get(username_id=self.request.user)
+            return TTowner.objects.all().filter(username_id=self.request.user)
 
 
 class TTCompanyList(generics.ListAPIView):
