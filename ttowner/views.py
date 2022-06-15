@@ -28,8 +28,6 @@ class CreateOwnerAPIView(ListCreateAPIView):
     ordering_fields = ['first_name']
 
     def perform_create(self, serializer):
-        superuser = self.request.user.superuser_id
-        print(superuser)
         return serializer.save(username=self.request.user)
 
     def get_queryset(self):
