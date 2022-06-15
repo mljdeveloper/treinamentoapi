@@ -44,10 +44,7 @@ class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        #1 -C
-        #3 -P
         typeofuser = self.request.user.typeofuser
-
         if typeofuser == 'C':
             return TTowner.objects.all().filter(parent_id=self.request.user)
         else:
@@ -62,8 +59,7 @@ class TTCompanyList(generics.ListAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        #1 -C
-        #3 -P
+
         unitid = self.kwargs['id']
         typeofuser = self.request.user.typeofuser
 
