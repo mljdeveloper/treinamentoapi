@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def upload_to(instance, filename):
-    return 'units/{filename}'.format(filename=filename)
+    return '/'.join(['units', str(instance.name), filename])
 
 
 class TTUnitImage(TrackingModel):

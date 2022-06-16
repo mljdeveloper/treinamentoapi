@@ -8,10 +8,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 def upload_to(instance, filename):
-    return 'posts/{filename}'.format(filename=filename)
+    return '/'.join(['posts', str(instance.name), filename])
+    # 'posts/{filename}'.format(filename=filename)
 
 
 class TTCompany(TrackingModel):
+
     logo = models.ImageField(
         _("Image"), upload_to=upload_to,  default='posts/noimage.jpg')
     name = models.CharField(max_length=100, blank=False)
