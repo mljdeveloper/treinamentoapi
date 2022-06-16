@@ -8,6 +8,6 @@ class TTFollowupSerializer(ModelSerializer):
 
     class Meta:
         model = TTfollowup
-        fields = ('id', 'slug', 'lead', 'broker', 'description', )
+        fields = ('id', 'slug', 'lead', 'username', 'description', )
 
     read_only_fields = ['tabela']

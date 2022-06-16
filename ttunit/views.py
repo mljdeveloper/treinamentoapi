@@ -14,6 +14,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIV
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics
 
 
 class CreateUnitAPIView(ListCreateAPIView):
@@ -28,12 +29,12 @@ class CreateUnitAPIView(ListCreateAPIView):
     ordering_fields = ['id']
 
     def perform_create(self, serializer):
-        return serializer.save(broker=self.request.user)
+        return serializer.save(username=self.request.user)
 
     def get_queryset(self):
         if getattr(self, "swagger_fake_view", False):
             return TTUnit.objects.none()
-        return TTUnit.objects.filter(broker=self.request.user)
+        return TTUnit.objects.filter(username=self.request.user)
 
 
 """     def post(self, request, format=None):
@@ -58,3 +59,23 @@ class TTUnitDetailAPIView(RetrieveUpdateDestroyAPIView):
             return TTUnit.objects.all().filter(parent_id=self.request.user)
         else:
             return TTUnit.objects.all().filter(username_id=self.request.user)
+
+
+class UnitListAPIView(generics.ListAPIView):
+    serializer_class = TTUnitSerializer
+
+    permission_classes = (IsAuthenticated,)
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+
+        unitid = self.kwargs['id']
+        typeofuser = self.request.user.typeofuser
+
+        Objeto = User.objects.all().get(id=unitid)
+
+        if typeofuser == 'C':
+            return TTUnit.objects.all().filter(parent_id=Objeto)
+        else:
+            return TTUnit.objects.all().filter(username_id=Objeto)

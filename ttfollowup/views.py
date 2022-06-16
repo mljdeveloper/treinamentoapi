@@ -44,13 +44,13 @@ class TTLeadDetailAPIView(RetrieveUpdateDestroyAPIView):
         return TTfollowup.objects.all()
 
 
-class BrokerFollowupDetailAPIView(generics.ListAPIView):
+class FollowupDetailAPIView(generics.ListAPIView):
     serializer_class = TTFollowupSerializer
 
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return TTfollowup.objects.all().filter(broker=self.request.user)
+        return TTfollowup.objects.all().filter(username=self.request.user)
 
 
 class LeadFollowupDetailAPIView(generics.ListAPIView):

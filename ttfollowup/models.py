@@ -13,8 +13,8 @@ class TTfollowup(TrackingModel):
     slug = models.SlugField('Atalho', null=True, unique=True)
     lead = models.ForeignKey(to=TTlead, on_delete=models.CASCADE,
                              related_name='ttfollowup_ttlead', null=True, blank=True)
-    broker = models.ForeignKey(to=User, on_delete=models.CASCADE,
-                               related_name='ttfollowup_user', null=True, blank=True)
+    username = models.ForeignKey(to=User, on_delete=models.CASCADE,
+                                 related_name='ttfollowup_user', null=True, blank=True)
     description = models.TextField(max_length=4000, null=True, blank=True)
 
     @property
@@ -26,7 +26,7 @@ class TTfollowup(TrackingModel):
         return self.slug
 
     class Meta:
-        ordering = ('broker',)
+        ordering = ('username',)
         verbose_name = 'Followup'
         verbose_name_plural = 'Followups'
 

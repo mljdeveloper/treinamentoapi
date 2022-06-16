@@ -16,7 +16,7 @@ class TTUnitAdmin(admin.ModelAdmin):
         return qs.filter(username=request.user)
 
     def save_model(self, request, obj, form, change):
-        obj.broker = request.user
+        obj.username = request.user
         super().save_model(request, obj, form, change)
 
 

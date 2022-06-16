@@ -12,8 +12,8 @@ class TTUnitSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = TTUnit
-        fields = ('id', 'unittype', 'company',
-                  'broker', 'status', 'active', 'businessdate',
+        fields = ('id', 'unittype', 'parent_id',
+                  'username', 'status', 'active', 'businessdate',
                   'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
                   'owner', 'tabela')
 
@@ -21,11 +21,10 @@ class TTUnitSerializers(serializers.ModelSerializer):
 
 
 class TTCompanySerializer(ModelSerializer):
-    ttcompany = TTUnitSerializers(many=True, read_only=True)
 
     class Meta:
         model = TTCompany
         fields = ('id', 'logo', 'name',
-                  'contact', 'address', 'codearea', 'phone', 'tabela', 'username', 'ttcompany')
+                  'contact', 'address', 'codearea', 'phone', 'tabela', 'username')
 
     read_only_fields = ['tabela']
