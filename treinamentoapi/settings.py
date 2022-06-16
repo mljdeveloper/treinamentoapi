@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from pickle import TRUE
 import django_heroku
 import dj_database_url
 
@@ -110,7 +111,7 @@ DATABASES = {
 }
 
 
-CORS_ALLOWED_ORIGINS = [
+CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "https://gestaotreinamento.herokuapp.com",
     "https://tecnotitan.herokuapp.com",
@@ -171,6 +172,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 LANGUAGE_CODE = 'en-us'
 
