@@ -109,12 +109,20 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:8080",
+    "http://localhost:8080/",
+    "https://tecnotitan.herokuapp.com"
+)
+"""
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://localhost:8080/",
     "https://tecnotitan.herokuapp.com"
 ]
+"""
 
 CORS_ALLOW_METHODS = (
     'GET',
