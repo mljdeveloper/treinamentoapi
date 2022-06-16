@@ -51,7 +51,7 @@ class TTownerDetailAPIView(RetrieveUpdateDestroyAPIView):
             return TTowner.objects.all().filter(username_id=self.request.user)
 
 
-class TTCompanyList(generics.ListAPIView):
+class TTOwnerList(generics.ListAPIView):
     serializer_class = TTownerSerializer
 
     permission_classes = (IsAuthenticated,)

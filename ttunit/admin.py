@@ -5,7 +5,7 @@ from .models import TTUnit
 
 
 class TTUnitAdmin(admin.ModelAdmin):
-    list_display = ('id', 'company', 'unittype', 'businessdate', 'broker', 'price',
+    list_display = ('id', 'parent_id', 'unittype', 'businessdate', 'username', 'price',
                     'modal', 'petpolicy')
     list_display_links = ('id', 'unittype')
     list_per_page = 200
@@ -13,7 +13,7 @@ class TTUnitAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(TTUnitAdmin, self).get_queryset(request)
-        return qs.filter(broker=request.user)
+        return qs.filter(username=request.user)
 
     def save_model(self, request, obj, form, change):
         obj.broker = request.user

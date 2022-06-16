@@ -29,9 +29,10 @@ class TTUnit(TrackingModel):
 
     slug = models.SlugField('Atalho', null=True, unique=True)
     unittype = models.CharField(max_length=20, null=True, blank=True)
-    company = models.ForeignKey(
-        TTCompany, related_name='ttcompany', on_delete=models.DO_NOTHING)
-    broker = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    parent_id = models.ForeignKey(
+        to=User,  related_name='parentid_ttunit', on_delete=models.DO_NOTHING)
+
+    username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     owner = models.ForeignKey(
         TTowner, related_name='unit_ttowner', on_delete=models.DO_NOTHING)
     zipcode = models.CharField(max_length=10,   null=True, blank=False)

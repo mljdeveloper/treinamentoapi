@@ -62,8 +62,8 @@ class UserRegisterAPIView(GenericAPIView):
         if serializers.is_valid():
             serializers.save()
 
+        if self.request.user.typeofuser == 'C':
             objUpdateUser = User.objects.get(email=varuseremail)
-            print(objUpdateUser)
             objUpdateUser.parent_id = objuser
             objUpdateUser.save()
 
@@ -99,11 +99,19 @@ class UserAPIView(RetrieveUpdateDestroyAPIView):
 
     lookup_field = "id"
 
-    def get_queryset(self):
-        print(self.request.user)
+    def get_queryset(self, *args, **kwargs):
+
         if getattr(self, 'swagger_fake_view', False):
             return User.objects.none()  # return empty queryset
         typeofuser = self.request.user.typeofuser
+
+        userid = self.kwargs['id']
+        print(userid)
+        objUser = User.objects.all().get(id=userid)
+        print(objUser)
+        print(self.request.data.get('password', None))
+        objUser.set_password(self.request.data.get('password', None))
+        objUser.save()
 
         if typeofuser == 'C':
             return User.objects.all().filter(parent_id=self.request.user)

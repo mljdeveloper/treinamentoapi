@@ -21,8 +21,8 @@ class TTUnitSerializer(ModelSerializer):
 
     class Meta:
         model = TTUnit
-        fields = ('id', 'unittype', 'company',
-                  'broker', 'status', 'active', 'businessdate',
+        fields = ('id', 'unittype', 'parent_id',
+                  'username', 'status', 'active', 'businessdate',
                   'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
                   'zipcode', 'address', 'address1', 'county', 'city', 'st',
                   'owner', 'description', 'tabela')
