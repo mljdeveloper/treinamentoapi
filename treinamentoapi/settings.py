@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'cloudinary_storage',
     'drf_yasg',
     'django_filters',
     'authentication',
@@ -190,9 +191,21 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': "dy520a3l9",
+    'API_KEY': "568434848673415",
+    'API_SECRET': "dMFEIbWuXCBpy9Uq-5m4a9zulms"
+}
+
+# cloudinary.config(
+#  cloud_name = "dy520a3l9",
+#  api_key = "568434848673415",
+#  api_secret = "dMFEIbWuXCBpy9Uq-5m4a9zulms"
+# )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
