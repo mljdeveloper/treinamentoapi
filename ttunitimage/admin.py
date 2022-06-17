@@ -5,7 +5,7 @@ from .models import TTUnitImage
 
 
 class TTUnitImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'unit', 'photo', 'description',
+    list_display = ('id', 'unit', 'photo', 'username', 'parent_id',
                     'create_at', 'updated_at')
     list_display_links = ('id', 'unit')
     list_per_page = 200
