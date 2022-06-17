@@ -8,6 +8,6 @@ class TTUnitImageSerializer(ModelSerializer):
 
     class Meta:
         model = TTUnitImage
-        fields = ('id', 'unit', 'photo', 'description', 'tabela')
+        fields = ('id', 'unit', 'photo', 'username', 'parent_id', 'tabela')
 
     read_only_fields = ['tabela']
