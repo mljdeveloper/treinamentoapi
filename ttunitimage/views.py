@@ -42,7 +42,11 @@ class UnitImageDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return TTUnitImage.objects.all()
+        typeofuser = self.request.user.typeofuser
+        if typeofuser == 'C':
+            return TTUnitImage.objects.all().filter(parent_id=self.request.user)
+        else:
+            return TTUnitImage.objects.all().filter(username_id=self.request.user)
 
 
 class GetAllUnitImagetDetailAPIView(generics.ListAPIView):
@@ -52,4 +56,11 @@ class GetAllUnitImagetDetailAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         unitid = self.kwargs['id']
-        return TTUnitImage.objects.all().filter(unit=unitid)
+        typeofuser = self.request.user.typeofuser
+
+        Objeto = User.objects.all().get(id=self.request.username)
+
+        if typeofuser == 'C':
+            return TTUnitImage.objects.all().filter(unit=unitid).filter(parent_id=Objeto)
+        else:
+            return TTUnitImage.objects.all().filter(unit=unitid).filter(username_id=Objeto)

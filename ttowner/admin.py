@@ -8,7 +8,7 @@ class TTownerAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'zipcode',
                     'username')
     list_display_links = ('id', 'first_name')
-    list_per_page = 200
+    list_per_page = 7
     search_fields = ('id', 'first_name',)
     exclude = ['username', ]
 

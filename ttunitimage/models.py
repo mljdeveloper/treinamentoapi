@@ -3,6 +3,7 @@ from ttunit.models import TTUnit
 from helpers.models import TrackingModel
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from authentication.models import User
 # Create your models here.
 
 
@@ -15,7 +16,11 @@ class TTUnitImage(TrackingModel):
                              related_name='ttunit_image', null=True, blank=True)
     photo = models.ImageField(
         _("Image"), upload_to=upload_to,  default='units/noimage.jpg')
-    description = models.TextField(max_length=4000, null=True, blank=True)
+
+    parent_id = models.ForeignKey(
+        to=User,  related_name='photo_ttunit', on_delete=models.DO_NOTHING)
+
+    username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     @property
     def tabela(self):
