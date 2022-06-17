@@ -11,11 +11,13 @@ import random
 
 
 def upload_to(instance, filename):
-    return '/'.join(['units', str(instance.tabela), filename])
+    return '/'.join(['units', str(instance.name), filename])
 
 
 class TTUnitImage(TrackingModel):
     slug = models.SlugField('Atalho', null=True, unique=True)
+    name = models.CharField(max_length=100, blank=False, null=True)
+
     unit = models.ForeignKey(to=TTUnit, on_delete=models.CASCADE,
                              related_name='ttunit_image', null=True, blank=True)
     photo = models.ImageField(
@@ -32,7 +34,7 @@ class TTUnitImage(TrackingModel):
         return valor
 
     def __str__(self):
-        return self.slug
+        return self.name
 
     class Meta:
         ordering = ('unit',)
