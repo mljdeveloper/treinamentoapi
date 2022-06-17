@@ -58,7 +58,7 @@ class GetAllUnitImagetDetailAPIView(generics.ListAPIView):
         unitid = self.kwargs['id']
         typeofuser = self.request.user.typeofuser
 
-        Objeto = User.objects.all().get(id=self.request.username)
+        Objeto = User.objects.all().get(id=self.request.user.id)
 
         if typeofuser == 'C':
             return TTUnitImage.objects.all().filter(unit=unitid).filter(parent_id=Objeto)

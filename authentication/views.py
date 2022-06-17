@@ -106,9 +106,7 @@ class UserAPIView(RetrieveUpdateDestroyAPIView):
         typeofuser = self.request.user.typeofuser
 
         userid = self.kwargs['id']
-        print(userid)
         objUser = User.objects.all().get(id=userid)
-        print(objUser)
         print(self.request.data.get('password', None))
         objUser.set_password(self.request.data.get('password', None))
         objUser.save()
