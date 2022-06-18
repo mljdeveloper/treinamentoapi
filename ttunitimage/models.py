@@ -17,7 +17,7 @@ def upload_to(instance, filename):
 class TTUnitImage(TrackingModel):
     slug = models.SlugField('Atalho', null=True, unique=True)
     name = models.CharField(max_length=100, blank=False, null=True)
-
+    principal = models.BooleanField(default=False)
     unit = models.ForeignKey(to=TTUnit, on_delete=models.CASCADE,
                              related_name='ttunit_image', null=True, blank=True)
     photo = models.ImageField(

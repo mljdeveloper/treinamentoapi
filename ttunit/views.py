@@ -1,7 +1,7 @@
 from ttunit.pagination import CustomPageNumberPagination
 from ttunit.models import TTUnit
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TTUnitSerializer
+from .serializers import TTUnitSerializer, TTVitrineSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from authentication.models import User
@@ -79,3 +79,28 @@ class UnitListAPIView(generics.ListAPIView):
             return TTUnit.objects.all().filter(parent_id=Objeto)
         else:
             return TTUnit.objects.all().filter(username_id=Objeto)
+
+
+class VitrineListAPIView(generics.ListAPIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+    serializer_class = TTVitrineSerializer
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        return TTUnit.objects.all()
+
+
+class VitrineUniqueListAPIView(generics.ListAPIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+    serializer_class = TTVitrineSerializer
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        unitid = self.kwargs['id']
+        return TTUnit.objects.all().filter(id=unitid)
