@@ -41,6 +41,28 @@ class TTUnitSerializer(ModelSerializer):
 
 
 class TTVitrineSerializer(ModelSerializer):
+    #ttunit_image = TTunitTTunitImageSerializers(many=True, read_only=True)
+
+    principal = serializers.SerializerMethodField()
+
+    def get_principal(self, unit):
+        qs = TTUnitImage.objects.filter(principal=True, unit=unit)
+        serializer = TTunitTTunitImageSerializers(
+            instance=qs, many=True, read_only=True)
+        return serializer.data
+
+    class Meta:
+        model = TTUnit
+        fields = ('id', 'unittype', 'parent_id',
+                  'username', 'status', 'active', 'businessdate',
+                  'price', 'modal', 'bedroom', 'restroom', 'petpolicy',
+                  'zipcode', 'address', 'address1', 'county', 'city', 'st',
+                  'owner', 'description', 'tabela', 'principal')
+
+    read_only_fields = ['tabela']
+
+
+class TTVitrineUniqueSerializer(ModelSerializer):
     ttunit_image = TTunitTTunitImageSerializers(many=True, read_only=True)
 
     class Meta:

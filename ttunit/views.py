@@ -1,7 +1,8 @@
 from ttunit.pagination import CustomPageNumberPagination
 from ttunit.models import TTUnit
+from ttunitimage.models import TTUnitImage
 from rest_framework.permissions import IsAuthenticated
-from .serializers import TTUnitSerializer, TTVitrineSerializer
+from .serializers import TTUnitSerializer, TTVitrineSerializer, TTVitrineUniqueSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from authentication.models import User
@@ -97,7 +98,7 @@ class VitrineUniqueListAPIView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = []
 
-    serializer_class = TTVitrineSerializer
+    serializer_class = TTVitrineUniqueSerializer
 
     lookup_field = "id"
 
