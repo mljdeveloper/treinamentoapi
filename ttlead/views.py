@@ -16,7 +16,8 @@ from rest_framework import generics
 
 
 class CreateLeadAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
     pagination_class = CustomPageNumberPagination
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter]
