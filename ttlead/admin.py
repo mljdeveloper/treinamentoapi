@@ -16,7 +16,6 @@ class TTLeadAdmin(admin.ModelAdmin):
         return qs.filter()
 
     def save_model(self, request, obj, form, change):
-        obj.username = request.user
         super().save_model(request, obj, form, change)
 
 

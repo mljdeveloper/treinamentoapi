@@ -18,8 +18,6 @@ class TTlead(TrackingModel):
     phone = models.CharField(max_length=10, blank=False)
     unit = models.ForeignKey(to=TTUnit, on_delete=models.CASCADE,
                              related_name='ttunit_ttlead', null=True, blank=True)
-    company = models.ForeignKey(to=TTCompany, on_delete=models.CASCADE,
-                                related_name='ttcompany_ttlead', null=True, blank=True)
     sent_email = models.BooleanField(default=False)
     message = models.TextField(max_length=4000, null=True, blank=True)
 
