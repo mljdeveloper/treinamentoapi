@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = 'django-insecure-q$w)%4a83)#*&hpoqd%9zfuomlc_p*9=m^*1y@=grm7u*zwknb'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = 'django-insecure-q$w)%4a83)#*&hpoqd%9zfuomlc_p*9=m^*1y@=grm7u*zwknb'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'treinamentoapi.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,7 +110,7 @@ DATABASES = {
 DATABASES = {
     'default': dj_database_url.config()
 }
-"""
+
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
