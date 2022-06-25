@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-# SECRET_KEY = 'django-insecure-q$w)%4a83)#*&hpoqd%9zfuomlc_p*9=m^*1y@=grm7u*zwknb'
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-q$w)%4a83)#*&hpoqd%9zfuomlc_p*9=m^*1y@=grm7u*zwknb'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'treinamentoapi.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,7 +110,7 @@ DATABASES = {
 DATABASES = {
     'default': dj_database_url.config()
 }
-
+"""
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
@@ -195,6 +195,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
+"""
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get("CLOUD_SECRET_KEY"),
+    'API_KEY': os.environ.get("CLOUD_API_KEY"),
+    'API_SECRET': os.environ.get("CLOUD_API_SECRET")
+}
+"""
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': "dy520a3l9",
     'API_KEY': "568434848673415",
@@ -211,3 +219,9 @@ CLOUDINARY_STORAGE = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripe
+STRIPE_PUBLIC_KEY = 'pk_test_51LDCnkHDgmnL8YSFQ35i9PLdfYuxk9KRV0f0Ox7ikDItEbuyF7QZ8o8nYTlU0jRVTuNlO1v4Bk7vA1PriDGpRR0w00WS78LVxC'
+STRIPE_PRIVATE_KEY = 'sk_test_51LDCnkHDgmnL8YSFEgYFrg4pFWx9rGCwkObDleUtzdT3tJqT9LuX0nALwAZ6BPNWzcRyWsUpmlaNbs1U4OcGNq1q008RxPMhsX'
+STRIPE_BASIC_PLAN_PRICE = 'price_1LDDA7HDgmnL8YSFoussh1Zu'
+STRIPE_ADVANCED_PLAN_PRICE = 'price_1LDDAsHDgmnL8YSF4gm3JRhn'

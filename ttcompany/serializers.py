@@ -6,6 +6,17 @@ from ttunit.models import TTUnit
 from rest_framework import serializers
 from ttowner.serializers import TTownerSerializer
 from rest_framework.serializers import ModelSerializer, StringRelatedField, CharField
+from authentication.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "username",
+            "email",
+            "password"
+        )
 
 
 class TTUnitSerializers(serializers.ModelSerializer):

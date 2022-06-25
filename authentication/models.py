@@ -13,6 +13,15 @@ from datetime import datetime, timedelta
 
 # Create your models here.
 
+class Plan(models.Model):
+    name = models.CharField(max_length=255)
+    max_leads = models.IntegerField(default=5)
+    max_clients = models.IntegerField(default=5)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 
 def upload_to(instance, filename):
     return 'people/{filename}'.format(filename=filename)
@@ -54,6 +63,13 @@ class MyUserManager(UserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
+    PLAN_ACTIVE = 'active'
+    PLAN_CANCELLED = 'cancelled'
+
+    CHOICES_PLAN_STATUS = (
+        (PLAN_ACTIVE, 'Active'),
+        (PLAN_CANCELLED, 'Cancelled')
+    )
 
     PEOPLE = 'P'
     COMPANY = 'C'
@@ -102,7 +118,8 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
 
         ),
     )
-    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+    parent_id = models.ForeignKey(
+        'self', on_delete=models.CASCADE, null=True, blank=True)
     photo = models.ImageField(
         _("Image"), upload_to=upload_to,  default='people/noimage.jpg')
     cargo = models.CharField(_("cargo"), max_length=150, blank=True)
@@ -111,6 +128,15 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
         choices=TYPEOFUSER,
         default=PEOPLE,
     )
+
+    plan = models.ForeignKey(Plan, related_name='users_plan',
+                             on_delete=models.SET_NULL, null=True, blank=True)
+    plan_status = models.CharField(
+        max_length=20, choices=CHOICES_PLAN_STATUS, default=PLAN_ACTIVE)
+    stripe_customer_id = models.CharField(
+        max_length=255, blank=True, null=True)
+    stripe_subscription_id = models.CharField(
+        max_length=255, blank=True, null=True)
 
     objects = MyUserManager()
 
@@ -124,6 +150,11 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     @property
     def tabela(self):
         valor = "user"
+        return valor
+
+    @property
+    def pub_key(self):
+        valor = settings.STRIPE_PUBLIC_KEY
         return valor
 
     @property

@@ -10,4 +10,5 @@ urlpatterns = [
     re_path('^user/(?P<id>.+)/$', CompanyUserDetailApiView.as_view()),
     re_path('^userRUD/(?P<id>.+)/$', CompanyUserRUD.as_view())
 
+
 ]

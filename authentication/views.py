@@ -1,17 +1,22 @@
+import json
+import stripe
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView
-from authentication.serializers import LoginSerializer, RegisterSerializer, TTownerSerializers
-from rest_framework import response, status, permissions
+from authentication.serializers import LoginSerializer, RegisterSerializer, TTownerSerializers, \
+    TTpaymentSerializers, PlanSerializer
+from rest_framework import response, status, permissions, filters, generics
 from django.contrib.auth import authenticate
-from authentication.models import User
+from authentication.models import User, Plan
 from ttcompany.models import TTCompany
 from ttowner.models import TTowner
 from django.db import IntegrityError
 from rest_framework.parsers import MultiPartParser, FormParser
 from authentication.pagination import CustomPageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import permissions, filters
-from rest_framework import generics
+
+from django.conf import settings
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # Create your views here.
 
 
@@ -151,3 +156,52 @@ class PersonListAPIView(generics.ListAPIView):
             return User.objects.all().filter(parent_id=self.request.user)
         else:
             return User.objects.all().filter(username_id=self.request.user)
+
+
+class StripePubKeyAPIView(generics.ListAPIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+    serializer_class = TTpaymentSerializers
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Response({'pub_key': 'empty'})
+
+        return User.objects.all()
+
+
+class UpdatePlan(RetrieveUpdateDestroyAPIView):
+    serializer_class = RegisterSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        plan = self.kwargs['plan']
+
+        if plan == 'free':
+            plan = Plan.objects.get(name='Free')
+        elif plan == 'smallteam':
+            plan = Plan.objects.get(name='Small team')
+        elif plan == 'bigteam':
+            plan = Plan.objects.get(name='Big team')
+
+        User.plan = plan
+        User.save()
+
+        return User.objects.filter(username=self.request.user)
+
+
+class PlanDetailAPIView(generics.ListAPIView):
+    serializer_class = PlanSerializer
+
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+    lookup_field = "id"
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Plan.objects.none()
+        return Plan.objects.all()
