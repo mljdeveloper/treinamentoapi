@@ -195,6 +195,7 @@ class UpdatePlan(RetrieveUpdateDestroyAPIView):
 
 class PlanDetailAPIView(generics.ListAPIView):
     serializer_class = PlanSerializer
+    pagination_class = CustomPageNumberPagination
 
     permission_classes = [permissions.AllowAny]
     authentication_classes = []
