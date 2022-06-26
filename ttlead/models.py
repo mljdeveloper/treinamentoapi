@@ -1,4 +1,5 @@
 from django.db import models
+from authentication.models import User
 from ttunit.models import TTUnit
 from authentication.models import User
 from helpers.models import TrackingModel
@@ -52,6 +53,10 @@ class TTlead(TrackingModel):
         max_length=25, choices=CHOICES_PRIORITY, default=MEDIUM)
     assigned_to = models.ForeignKey(
         User, related_name='assignedleads', blank=True, null=True, on_delete=models.SET_NULL)
+    parent_id = models.ForeignKey(
+        to=User,  related_name='parentid_lead',  null=True, blank=True, on_delete=models.DO_NOTHING)
+    username = models.ForeignKey(
+        to=User, related_name='username_lead', null=True, blank=True, on_delete=models.DO_NOTHING)
 
     @property
     def tabela(self):

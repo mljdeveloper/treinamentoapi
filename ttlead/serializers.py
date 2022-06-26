@@ -11,6 +11,6 @@ class TTleadSerializer(ModelSerializer):
         model = TTlead
         fields = ('id', 'first_name',
                   'last_name', 'email', 'codearea', 'phone', 'tabela', 'unit',
-                  'sent_email', 'message')
+                  'sent_email', 'message', 'username', 'parent_id')
 
     read_only_fields = ['tabela']

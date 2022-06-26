@@ -1,4 +1,5 @@
 from ttlead.pagination import CustomPageNumberPagination
+from ttunit.models import TTUnit
 from ttlead.models import TTlead
 from rest_framework.permissions import IsAuthenticated
 from .serializers import TTleadSerializer
@@ -51,5 +52,15 @@ class CompanyLeadDetailAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        unitid = self.kwargs['id']
-        return TTlead.objects.all().filter(company=unitid)
+
+        if getattr(self, 'swagger_fake_view', False):
+            return User.objects.none()  # return empty queryset
+        typeofuser = self.request.user.typeofuser
+
+        userid = self.kwargs['id']
+        objUser = User.objects.all().get(id=userid)
+
+        if typeofuser == 'C':
+            return User.objects.all().filter(parent_id=objUser)
+        else:
+            return User.objects.all().filter(username_id=objUser)
