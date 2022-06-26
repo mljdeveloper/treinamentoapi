@@ -51,16 +51,15 @@ class CompanyLeadDetailAPIView(generics.ListAPIView):
 
     permission_classes = (IsAuthenticated,)
 
+    lookup_field = "id"
+
     def get_queryset(self):
 
         if getattr(self, 'swagger_fake_view', False):
             return User.objects.none()  # return empty queryset
         typeofuser = self.request.user.typeofuser
 
-        userid = self.kwargs['id']
-        objUser = User.objects.all().get(id=userid)
-
         if typeofuser == 'C':
-            return User.objects.all().filter(parent_id=objUser)
+            return TTlead.objects.all().filter(parent_id=self.request.user.id)
         else:
-            return User.objects.all().filter(username=objUser)
+            return TTlead.objects.all().filter(username=self.request.user.id)
