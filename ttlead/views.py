@@ -48,7 +48,7 @@ class TTLeadDetailAPIView(RetrieveUpdateDestroyAPIView):
 
 class CompanyLeadDetailAPIView(generics.ListAPIView):
     serializer_class = TTleadSerializer
-
+    pagination_class = CustomPageNumberPagination
     permission_classes = (IsAuthenticated,)
 
     lookup_field = "id"
