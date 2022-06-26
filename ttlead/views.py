@@ -63,4 +63,4 @@ class CompanyLeadDetailAPIView(generics.ListAPIView):
         if typeofuser == 'C':
             return User.objects.all().filter(parent_id=objUser)
         else:
-            return User.objects.all().filter(username_id=objUser)
+            return User.objects.all().filter(username=objUser)
